@@ -27,4 +27,7 @@ Route::resource('user', App\Http\Controllers\UserController::class);
 
 Route::resource('category', App\Http\Controllers\CategoryController::class);
 Route::resource('fasilitas', App\Http\Controllers\FasilitasController::class);
+Route::resource('car', App\Http\Controllers\CarController::class);
+
+Route::get('/ajax/fasilitas-mobil/search', [App\Http\Controllers\FasilitasController::class, 'ajaxSearch']);
 
