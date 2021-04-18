@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
+
+
+    protected $fillable = [
+    	'nama_mobil','kategori_id','panjang_mobil','tinggi_mobil','umur_mobil','jumlah_kursi','jumlah_pintu',
+    	'warna_mobil','tranmisi_mobil','lepas_kunci','status_mobil','stnk_mobil'
+    ];
+
+    public function kategori()
+    {
+    	return $this->belongsTo(Category::class, 'kattegori_id');
+    }
+
+    public function fasilitas()
+    {
+    	return $this->belongsToMany('App\Models\Fasilitas');
+    }
 }

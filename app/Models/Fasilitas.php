@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Fasilitas extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+    	'nama_fasilitas','icon_fasilitas'
+    ];
+
+     public function car()
+    {
+    	return $this->belongsToMany('App\Models\Car');
+    }
 }

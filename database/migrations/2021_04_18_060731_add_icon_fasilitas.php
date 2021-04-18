@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFasilitasTable extends Migration
+class AddIconFasilitas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateFasilitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('fasilitas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_fasilitas');
-            $table->timestamps();
+        Schema::table('fasilitas', function (Blueprint $table) {
+            $table->string('icon_fasilitas')->nullable();
         });
     }
 
@@ -27,6 +25,8 @@ class CreateFasilitasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fasilitas');
+        Schema::table('fasilitas', function (Blueprint $table) {
+            $table->dropColumn('icon_fasilitas');
+        });
     }
 }
