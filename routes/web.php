@@ -26,3 +26,5 @@ Route::get('user/setting-profile',[App\Http\Controllers\UserController::class, '
 Route::resource('user', App\Http\Controllers\UserController::class);
 
 Route::resource('category', App\Http\Controllers\CategoryController::class);
+Route::resource('fasilitas', App\Http\Controllers\FasilitasController::class);
+
