@@ -24,3 +24,5 @@ Route::get('user/profile',[App\Http\Controllers\UserController::class, 'profile'
 Route::post('user/ganti-password', [App\Http\Controllers\UserController::class, 'gantiPassword'])->name('ganti-password');
 Route::get('user/setting-profile',[App\Http\Controllers\UserController::class, 'settingProfile'])->name('setting-profile');
 Route::resource('user', App\Http\Controllers\UserController::class);
+
+Route::resource('category', App\Http\Controllers\CategoryController::class);

@@ -3,7 +3,7 @@
 @section('content')
 <div class="register-box">
     <div class="register-logo">
-      <b>Juaragan</b> Laundry</a>
+      <b>Rental</b> Mobil</a>
     </div>
   
     <div class="card">
@@ -37,13 +37,6 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-          </div>
-          <div class="input-group mb-3">
-            <select name="roles" id="roles" class="form-control @error('roles') is-invalid @enderror">
-                <option value="0" selected disabled class="text-muted">Daftar Sebagai--</option>
-                <option value="2">Tukang</option>
-                <option value="3">Customer</option>
-            </select>
           </div>
           <div class="input-group mb-3">
             <input placeholder="Masukan Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">

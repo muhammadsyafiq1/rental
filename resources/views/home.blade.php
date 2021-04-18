@@ -11,7 +11,7 @@
         @if (Auth::user()->roles == 1)
         <h1 class="m-0">Dashboard Admin</h1>
         @elseif(Auth::user()->roles == 2)
-        <h1 class="m-0">Dashboard Tukang</h1>
+        <h1 class="m-0">Dashboard Mitra</h1>
         @else
         <h1 class="m-0">Dashboard Customer</h1>
         @endif
