@@ -21,23 +21,50 @@
 @endsection
 
 @section('content')
-<div class="row mb-2">
+<div class="row mb-4">
   <div class="col-12">
     <button class="btn btn-sm btn-success"  data-toggle="modal" data-target="#exampleModal">
         <i class="fa fa-plus"> Tambah Mobil</i>
       </button>
   </div>
 </div>
-<div class="card">
-  @if (session('status'))
-      <div class="alert alert-warning text-center">
-          {{session('status')}}
-      </div>
-  @endif
-  <div class="card-body">
 
+@if (session('status'))
+  <div class="alert alert-warning text-center">
+      {{session('status')}}
   </div>
-  <!-- /.card-body -->
+@endif
+
+<div class="row">
+  @foreach($cars as $car)
+  <div class="col-4">
+    <div class="card" style="width: 20rem;">
+      <div class="gallery-container">
+        <img class="card-img-top" src="{{Storage::url($car->gallery->first()->foto)}}" alt="Card image cap">
+        <a href="{{route('remove.car',$car->id)}}" class="delete-gallery" onclick="return confirm('Yakin ingin menghapus {{$car->nama_mobil}} ?')">
+            <img src="/backend/dist/img/icon-delete.svg">
+        </a>
+    </div>
+      
+      <div class="card-body">
+        <div class="d-flex justify-content-between" style="font-weight: bold;">
+            <div class="text-success">
+            <h5>{{$car->nama_mobil}}</h5>
+          </div>
+          <div class="text-success">
+            Rp. {{number_format($car->harga_rental)}} / Day
+          </div>
+        </div>
+        <p class="card-text">
+            <li class="text-muted">Transmisi : {{$car->tranmisi_mobil}}</li>
+            <li class="text-muted">Color     : {{$car->warna_mobil}}</li>
+            <li class="text-muted">Type      : {{$car->kategori->kategori_mobil}}</li>
+        </p>
+        <a href="{{route('car.edit',$car->id)}}" class="btn btn-sm btn-block btn-info btn-shadow">Detail / Edit</a>
+      </div>
+    </div>
+  </div>
+  @endforeach
 </div>
 
 {{-- modal --}}
@@ -203,6 +230,15 @@
       </div>
     </div>
 </div>
+
+<style>
+  .gallery-container .delete-gallery{
+     display: block;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  }
+</style>
 @endsection
 
 @push('scripts')

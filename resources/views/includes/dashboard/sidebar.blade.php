@@ -26,7 +26,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{route('home')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -41,13 +41,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('profile')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lihat Profile</p>
-                </a>
-              </li>
+            <ul>
               <li class="nav-item">
                 <a href="{{route('setting-profile')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

@@ -17,7 +17,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::with('gallery','kategori')->get(); 
         $categories = Category::all();
         return view('dashboard.car.index', compact('cars','categories'));
     }
@@ -27,9 +27,10 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createGallery($id)
     {
-        //
+        $cars = Car::with('gallery')->where('id', $id)->firstOrFail();
+        return view('dashboard.gallery.create', compact('cars'));
     }
 
     /**
@@ -40,7 +41,23 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all()); die;
+        $request->validate([
+            'nama_mobil' => 'required|max:50|min:3',
+            'kategori_id' => 'required',
+            'panjang_mobil' => 'required|integer|min:1',
+            'tinggi_mobil' => 'required|integer|min:1',
+            'umur_mobil' => 'required',
+            'jumlah_kursi' => 'required|min:1',
+            'jumlah_pintu' => 'required|min:1',
+            'warna_mobil' => 'required|string',
+            'tranmisi_mobil' => 'required',
+            'lepas_kunci' => 'required',
+            'status_mobil' => 'required',
+            'stnk_mobil' => 'required',
+            'nomor_plat' => 'required',
+
+        ]);
+
         $car = new Car;
         $car->nama_mobil = $request->nama_mobil;
         $car->kategori_id = $request->kategori_id;
@@ -59,6 +76,8 @@ class CarController extends Controller
         $car->slug = Str::slug($request->nama_mobil);
         $car->save();
         $car->fasilitas()->attach($request->fasilitas);
+
+        return redirect(route('createGallery',$car->id))->with('status','Harap Tambahkan Foto Mobil.');
     }
 
     /**
@@ -80,7 +99,9 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car = Car::with('kategori','gallery','fasilitas','user')->findOrFail($id);  
+        $categories = Category::all();
+        return view('dashboard.car.edit', compact('car','categories'));
     }
 
     /**
@@ -92,7 +113,46 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $request->validate([
+            'nama_mobil' => 'required|max:50|min:3',
+            'kategori_id' => 'required',
+            'panjang_mobil' => 'required|integer|min:1',
+            'tinggi_mobil' => 'required|integer|min:1',
+            'umur_mobil' => 'required',
+            'jumlah_kursi' => 'required|min:1',
+            'jumlah_pintu' => 'required|min:1',
+            'warna_mobil' => 'required|string',
+            'tranmisi_mobil' => 'required',
+            'lepas_kunci' => 'required',
+            'status_mobil' => 'required',
+            'stnk_mobil' => 'required',
+            'nomor_plat' => 'required',
+
+        ]);
+
+        // dd($request->tranmisi_mobil); die;
+        $car_edit =  Car::findOrFail($id);
+        $car_edit->nama_mobil = $request->nama_mobil;
+        $car_edit->kategori_id = $request->kategori_id;
+        $car_edit->panjang_mobil = $request->panjang_mobil;
+        $car_edit->tinggi_mobil = $request->tinggi_mobil;
+        $car_edit->umur_mobil = $request->umur_mobil;
+        $car_edit->jumlah_kursi = $request->jumlah_kursi;
+        $car_edit->jumlah_pintu = $request->jumlah_pintu;
+        $car_edit->warna_mobil = $request->warna_mobil;
+        $car_edit->tranmisi_mobil = $request->tranmisi_mobil;
+        $car_edit->lepas_kunci = $request->lepas_kunci;
+        $car_edit->status_mobil = 0;
+        $car_edit->stnk_mobil = $request->stnk_mobil;
+        $car_edit->nomor_plat = $request->nomor_plat;
+        $car_edit->deskripsi_mobil = $request->deskripsi_mobil;
+        $car_edit->harga_rental = $request->harga_rental;
+        $car_edit->user_id = Auth::user()->id;
+        $car_edit->slug = Str::slug($request->nama_mobil);
+        $car_edit->save();
+        $car_edit->fasilitas()->sync($request->fasilitas);
+
+        return redirect()->back()->with('status','Mobil Berhasil diupdate');
     }
 
     /**
@@ -101,7 +161,7 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function removeCar($id)
     {
         $item = Car::findOrFail($id);
         $item->delete();
