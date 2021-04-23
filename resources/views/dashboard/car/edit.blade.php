@@ -22,10 +22,19 @@
 @endsection
 
 @section('content')
+<div class="row">
+	<div class="col-12">
+		@if (session('status'))
+	      <div class="alert alert-warning text-center">
+	          {{session('status')}}
+	      </div>
+		@endif
+	</div>
+</div>
 <div class="card">
 		<div class="card-header">
 			<div class="card-title">
-				{{$car->nama_mobil}}
+				{{$car->nama_mobil}} - {{$car->status_mobil == 1 ? 'TERSEDIA' : 'SEDANG DIRENTAL'}}
 			</div>
 		</div>
 		<form method="post" action="{{route('car.update',$car->id)}}" enctype="multipart/form-data">
@@ -35,7 +44,7 @@
 					<div class="col-12 col-lg-5">
 						<img src="{{Storage::url($car->gallery->first()->foto)}}" class="w-100 img-rounded">
 						 <div class="row mt-4">
-						 	 <div class="col-12 col-lg-4 form-group">
+						 	 <div class="col-12 col-lg-6 form-group">
 			                  <label for="stnk_mobil">Nomor STNK</label>
 			                  <input value="{{old('stnk_mobil') ? old('stnk_mobil') : $car->stnk_mobil}}" type="text" name="stnk_mobil" class="form-control @error('stnk_mobil') is-invalid @enderror" id="stnk_mobil">
 			                  @error('stnk_mobil')
@@ -44,19 +53,10 @@
 			                      </span>
 			                  @enderror
 			                </div>
-			                <div class="col-12 col-lg-4 form-group">
+			                <div class="col-12 col-lg-6 form-group">
 			                  <label for="nomor_plat">Nomor Plat</label>
 			                  <input value="{{old('nomor_plat') ? old('nomor_plat') : $car->nomor_plat}}"  type="text" name="nomor_plat" class="form-control @error('nomor_plat') is-invalid @enderror" id="nomor_plat">
 			                  @error('nomor_plat')
-			                      <span class="invalid-feedback" role="alert">
-			                          <strong>{{ $message }}</strong>
-			                      </span>
-			                  @enderror
-			                </div>
-			                <div class="col-12 col-lg-4 form-group">
-			                  <label for="umur_mobil">Umur Mobil</label>
-			                  <input value="{{old('umur_mobil') ? old('umur_mobil') : $car->umur_mobil}}"  type="text" name="umur_mobil" class="form-control @error('umur_mobil') is-invalid @enderror" id="umur_mobil">
-			                  @error('umur_mobil')
 			                      <span class="invalid-feedback" role="alert">
 			                          <strong>{{ $message }}</strong>
 			                      </span>
@@ -132,7 +132,7 @@
 			                  </div>
 			              </div>
 			              <div class="row">
-			                  <div class="form-group col-12 col-lg-3">
+			                  <div class="form-group col-12 col-lg-6">
 			                      <label for="jumlah_kursi">Kursi Mobil</label>
 			                      <input value="{{old('jumlah_kursi') ? old('jumlah_kursi') : $car->jumlah_kursi}}"  name="jumlah_kursi" type="number" class="form-control @error('jumlah_kursi') is-invalid @enderror" id="jumlah_kursi">
 			                      @error('jumlah_kursi')
@@ -141,28 +141,10 @@
 			                          </span>
 			                      @enderror
 			                  </div>
-			                  <div class="form-group col-12 col-lg-3">
+			                  <div class="form-group col-12 col-lg-6">
 			                      <label for="jumlah_pintu">Pintu Mobil</label>
 			                      <input value="{{old('jumlah_pintu') ? old('jumlah_pintu') : $car->jumlah_pintu}}"  name="jumlah_pintu" type="number" class="form-control @error('jumlah_pintu') is-invalid @enderror" id="jumlah_pintu">
 			                      @error('jumlah_pintu')
-			                          <span class="invalid-feedback" role="alert">
-			                              <strong>{{ $message }}</strong>
-			                          </span>
-			                      @enderror
-			                  </div>
-			                  <div class="form-group col-12 col-lg-3">
-			                      <label for="panjang_mobil">Panjang Mobil</label>
-			                      <input value="{{old('panjang_mobil') ? old('panjang_mobil') : $car->panjang_mobil}}"  name="panjang_mobil" type="number" class="form-control @error('panjang_mobil') is-invalid @enderror" id="panjang_mobil">
-			                      @error('panjang_mobil')
-			                          <span class="invalid-feedback" role="alert">
-			                              <strong>{{ $message }}</strong>
-			                          </span>
-			                      @enderror
-			                  </div>
-			                  <div class="form-group col-12 col-lg-3">
-			                      <label for="tinggi_mobil">Tinggi Mobil</label>
-			                      <input value="{{old('tinggi_mobil') ? old('tinggi_mobil') : $car->tinggi_mobil}}"  name="tinggi_mobil" type="number" class="form-control @error('tinggi_mobil') is-invalid @enderror" id="tinggi_mobil">
-			                      @error('tinggi_mobil')
 			                          <span class="invalid-feedback" role="alert">
 			                              <strong>{{ $message }}</strong>
 			                          </span>

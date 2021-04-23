@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Bank;
 use Auth;
 
 class UserController extends Controller
@@ -40,6 +41,12 @@ class UserController extends Controller
         $user->password = \Hash::make($request->password);
         $user->save();
         return redirect()->back()->with('status','Password berhasil diubah');
+    }
+
+    public function daftarMitra(Request $request, $id)
+    {
+        $rekenings = Bank::all();
+        return view('dashboard.daftar-mitra.index', compact('rekenings'));
     }
 
     /**

@@ -59,6 +59,7 @@
             <li class="text-muted">Transmisi : {{$car->tranmisi_mobil}}</li>
             <li class="text-muted">Color     : {{$car->warna_mobil}}</li>
             <li class="text-muted">Type      : {{$car->kategori->kategori_mobil}}</li>
+            <li class="text-muted">Lepas kunci : {{$car->lepas_kunci == 1 ? 'ya' : 'tidak'}}</li>
         </p>
         <a href="{{route('car.edit',$car->id)}}" class="btn btn-sm btn-block btn-info btn-shadow">Detail / Edit</a>
       </div>
@@ -141,7 +142,16 @@
                   </div>
               </div>
               <div class="row">
-                  <div class="form-group col-3">
+                  <div class="form-group col-4">
+                      <label for="harga_rental">Harga Rental / hari</label>
+                      <input name="harga_rental" type="number" class="form-control @error('harga_rental') is-invalid @enderror" id="harga_rental">
+                      @error('harga_rental')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  </div>
+                  <div class="form-group col-4">
                       <label for="jumlah_kursi">Kursi Mobil</label>
                       <input name="jumlah_kursi" type="number" class="form-control @error('jumlah_kursi') is-invalid @enderror" id="jumlah_kursi">
                       @error('jumlah_kursi')
@@ -150,28 +160,10 @@
                           </span>
                       @enderror
                   </div>
-                  <div class="form-group col-3">
+                  <div class="form-group col-4">
                       <label for="jumlah_pintu">Pintu Mobil</label>
                       <input name="jumlah_pintu" type="number" class="form-control @error('jumlah_pintu') is-invalid @enderror" id="jumlah_pintu">
                       @error('jumlah_pintu')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group col-3">
-                      <label for="panjang_mobil">Panjang Mobil / Cm</label>
-                      <input name="panjang_mobil" type="number" class="form-control @error('panjang_mobil') is-invalid @enderror" id="panjang_mobil">
-                      @error('panjang_mobil')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group col-3">
-                      <label for="tinggi_mobil">Tinggi Mobil / Cm</label>
-                      <input name="tinggi_mobil" type="number" class="form-control @error('tinggi_mobil') is-invalid @enderror" id="tinggi_mobil">
-                      @error('tinggi_mobil')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
@@ -188,13 +180,17 @@
                   </div>
                   <div class="col-4">
                     <div class="form-check">
-                    <input name="lepas_kunci" value="0" type="radio" class="form-check-input" id="tidak">
-                    <label class="form-check-label" for="tidak">Tidak, Saya sebagai sopir</label>
+                      <input name="lepas_kunci" value="0" type="radio" class="form-check-input" id="tidak">
+                      <label class="form-check-label" for="tidak">Tidak, Saya sebagai sopir</label>
+                    </div>
+                  </div>
+                  <div class="form-group col">
+                    <label for="biaya_supir">Biaya Supir</label>
+                    <input type="text" name="biaya_supir" class="form-control">
                   </div>
                 </div>
-              </div>
               <div class="row mt-3">
-                <div class="col-4 form-group">
+                <div class="col-3 form-group">
                   <label for="stnk_mobil">Nomor STNK</label>
                   <input type="text" name="stnk_mobil" class="form-control @error('stnk_mobil') is-invalid @enderror" id="stnk_mobil">
                   @error('stnk_mobil')
@@ -203,7 +199,7 @@
                       </span>
                   @enderror
                 </div>
-                <div class="col-4 form-group">
+                <div class="col-3 form-group">
                   <label for="nomor_plat">Nomor Plat</label>
                   <input type="text" name="nomor_plat" class="form-control @error('nomor_plat') is-invalid @enderror" id="nomor_plat">
                   @error('nomor_plat')
@@ -212,10 +208,10 @@
                       </span>
                   @enderror
                 </div>
-                <div class="col-4 form-group">
-                  <label for="umur_mobil">Umur Mobil</label>
-                  <input type="text" name="umur_mobil" class="form-control @error('umur_mobil') is-invalid @enderror" id="umur_mobil">
-                  @error('umur_mobil')
+                <div class="col-6 form-group">
+                  <label for="deskripsi_mobil">Deskripsi Mobil</label>
+                  <textarea class="form-control @error('deskripsi_mobil') is-invalid @enderror" name="deskripsi_mobil" id="deskripsi_mobil"></textarea>
+                  @error('deskripsi_mobil')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>

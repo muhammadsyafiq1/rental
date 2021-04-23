@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class DropPanjangDanTinggiMobil extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('cars', function (Blueprint $table) {
+            $table->dropColumn('panjang_mobil');
+            $table->dropColumn('tinggi_mobil');
+            $table->string('biaya_supir')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('cars', function (Blueprint $table) {
+            $table->integer('panjang_mobil');
+            $table->integer('tinggi_mobil');
+            $table->dropColumn('biaya_supir');
+        });
+    }
+}

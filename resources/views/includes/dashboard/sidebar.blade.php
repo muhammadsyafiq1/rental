@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Rental Mobil</span>
     </a>
@@ -33,16 +33,25 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          @if(Auth::user()->roles == 3)
+            <li class="nav-item">
+              <a href="{{route('daftar.mitra',Auth::user()->id)}}" class="nav-link">
+                <i class="fa fa-car nav-icon"></i>
+                <p>Menjadi mitra kami</p>
+              </a>
+            </li>
+          @endif
+
+           <li class="nav-item ">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-user"></i>
+               <i class="nav-icon fa fa-user"></i>
               <p>
                 Profile
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul>
-              <li class="nav-item">
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
                 <a href="{{route('setting-profile')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Setting Profile</p>
@@ -50,38 +59,70 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{route('user.index')}}" class="nav-link">
-              <i class="nav-icon fa fa-users"></i>
-              <p>
-                Data Master Pengguna
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('category.index')}}" class="nav-link">
-              <i class="nav-icon fa fa-list"></i>
-              <p>
-                Kategori Mobil
-              </p>
-            </a>
-          </li>
-           <li class="nav-item">
-            <a href="{{route('fasilitas.index')}}" class="nav-link">
-              <i class="nav-icon fa fa-building"></i>
-              <p>
-                Fasilitas Mobil
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('car.index')}}" class="nav-link">
-              <i class="nav-icon fa fa-car"></i>
-              <p>
-                Data Master Mobil
-              </p>
-            </a>
-          </li>
+
+
+          @if(Auth::user()->roles == 2)
+            <li class="nav-item">
+              <a href="{{route('category.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-list"></i>
+                <p>
+                  Kategori Mobil
+                </p>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a href="{{route('fasilitas.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-building"></i>
+                <p>
+                  Fasilitas Mobil
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('car.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-car"></i>
+                <p>
+                  Mobil rental
+                </p>
+              </a>
+            </li>
+          @endif
+
+          @if(Auth::user()->roles == 1)
+            <li class="nav-item">
+              <a href="{{route('user.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-users"></i>
+                <p>
+                  Data Master Pengguna
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('car.semuamobil')}}" class="nav-link">
+                <i class="nav-icon fa fa-car"></i>
+                <p>
+                  Data Master Mobil
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('transaction.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-money-bill"></i>
+                <p>
+                  Transaksi 
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('bank.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-credit-card"></i>
+                <p>
+                  Rekening saya
+                </p>
+              </a>
+            </li>
+          @endif
+
           <li class="nav-item">
             <a href="{{url('/logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fas fa-sign-out-alt"></i>

@@ -17,9 +17,15 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('gallery','kategori')->get(); 
+        $cars = Car::with('gallery','kategori')->where('user_id', Auth::user()->id)->get(); 
         $categories = Category::all();
         return view('dashboard.car.index', compact('cars','categories'));
+    }
+
+    public function semuaMobil ()
+    {
+        $cars = Car::with('gallery','kategori')->get();
+        return view('dashboard.admin.car.index', compact('cars'));
     }
 
     /**
@@ -44,9 +50,6 @@ class CarController extends Controller
         $request->validate([
             'nama_mobil' => 'required|max:50|min:3',
             'kategori_id' => 'required',
-            'panjang_mobil' => 'required|integer|min:1',
-            'tinggi_mobil' => 'required|integer|min:1',
-            'umur_mobil' => 'required',
             'jumlah_kursi' => 'required|min:1',
             'jumlah_pintu' => 'required|min:1',
             'warna_mobil' => 'required|string',
@@ -60,10 +63,10 @@ class CarController extends Controller
 
         $car = new Car;
         $car->nama_mobil = $request->nama_mobil;
+        $car->deskripsi_mobil = $request->deskripsi_mobil;
+        $car->harga_rental = $request->harga_rental;
+        $car->biaya_supir = $request->biaya_supir;
         $car->kategori_id = $request->kategori_id;
-        $car->panjang_mobil = $request->panjang_mobil;
-        $car->tinggi_mobil = $request->tinggi_mobil;
-        $car->umur_mobil = $request->umur_mobil;
         $car->jumlah_kursi = $request->jumlah_kursi;
         $car->jumlah_pintu = $request->jumlah_pintu;
         $car->warna_mobil = $request->warna_mobil;
@@ -116,15 +119,11 @@ class CarController extends Controller
           $request->validate([
             'nama_mobil' => 'required|max:50|min:3',
             'kategori_id' => 'required',
-            'panjang_mobil' => 'required|integer|min:1',
-            'tinggi_mobil' => 'required|integer|min:1',
-            'umur_mobil' => 'required',
             'jumlah_kursi' => 'required|min:1',
             'jumlah_pintu' => 'required|min:1',
             'warna_mobil' => 'required|string',
             'tranmisi_mobil' => 'required',
             'lepas_kunci' => 'required',
-            'status_mobil' => 'required',
             'stnk_mobil' => 'required',
             'nomor_plat' => 'required',
 
@@ -134,9 +133,6 @@ class CarController extends Controller
         $car_edit =  Car::findOrFail($id);
         $car_edit->nama_mobil = $request->nama_mobil;
         $car_edit->kategori_id = $request->kategori_id;
-        $car_edit->panjang_mobil = $request->panjang_mobil;
-        $car_edit->tinggi_mobil = $request->tinggi_mobil;
-        $car_edit->umur_mobil = $request->umur_mobil;
         $car_edit->jumlah_kursi = $request->jumlah_kursi;
         $car_edit->jumlah_pintu = $request->jumlah_pintu;
         $car_edit->warna_mobil = $request->warna_mobil;
@@ -145,8 +141,10 @@ class CarController extends Controller
         $car_edit->status_mobil = 0;
         $car_edit->stnk_mobil = $request->stnk_mobil;
         $car_edit->nomor_plat = $request->nomor_plat;
+        $car_edit->biaya_supir = $request->biaya_supir;
         $car_edit->deskripsi_mobil = $request->deskripsi_mobil;
         $car_edit->harga_rental = $request->harga_rental;
+        $car_edit->biaya_supir = $request->biaya_supir;
         $car_edit->user_id = Auth::user()->id;
         $car_edit->slug = Str::slug($request->nama_mobil);
         $car_edit->save();
