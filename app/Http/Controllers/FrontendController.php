@@ -14,9 +14,10 @@ class FrontendController extends Controller
     	return view('pages.home.index', compact('cars')); 
     }
 
-    public function detail($slug)
+    public function detailMobil($slug)
     {
-    	# code...
+        $car = Car::with('user','kategori','gallery')->where('slug',$slug)->first(); 
+    	return view('pages.detail-mobil.index', compact('car'));
     }
 
     public function SemuaMobil()

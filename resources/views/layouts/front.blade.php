@@ -26,6 +26,7 @@
     </div>
 
     @include('includes.frontend.scripts')
+    @stack('scripts')
 
   </body>
 

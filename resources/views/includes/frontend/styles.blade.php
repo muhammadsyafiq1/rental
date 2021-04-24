@@ -7,5 +7,6 @@
 <link rel="stylesheet" href="/frontend/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="/frontend/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="/frontend/css/aos.css">
+
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="/frontend/css/style.css">

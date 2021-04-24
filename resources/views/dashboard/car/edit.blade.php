@@ -226,7 +226,7 @@
                 @enderror
                 <input type="hidden" name="car_id" value="{{ $car->id }}">
                 <input name="foto" type="file" id="file" style="display: none;" onchange="form.submit()">
-                @if($car->gallery->count() == 3)
+                @if($car->gallery->count() == 6)
                 <a class="btn btn-success btn-block mt-3" href="{{route('car.index')}}">
                     Selesai 
                 </a>

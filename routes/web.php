@@ -19,6 +19,7 @@ Auth::routes();
 // view frontend
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 Route::get('/lihat-semua-mobil', [App\Http\Controllers\FrontendController::class, 'SemuaMobil'])->name('lihat-semua-mobil');
+Route::get('/mobil/detail/{slug}', [App\Http\Controllers\FrontendController::class, 'detailMobil'])->name('detail');
 
 
 // dashboard backend
