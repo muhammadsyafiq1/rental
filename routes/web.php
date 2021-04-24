@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// view frontend
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
+Route::get('/lihat-semua-mobil', [App\Http\Controllers\FrontendController::class, 'SemuaMobil'])->name('lihat-semua-mobil');
 
+
+// dashboard backend
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('user/ganti-password', [App\Http\Controllers\UserController::class, 'gantiPassword'])->name('ganti-password');
 Route::get('user/setting-profile',[App\Http\Controllers\UserController::class, 'settingProfile'])->name('setting-profile');
