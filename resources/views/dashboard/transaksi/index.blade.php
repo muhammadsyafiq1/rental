@@ -59,12 +59,16 @@
                   </td>
                   <td>{{$transaksi->status}}</td>
                   <td>
-                    <a href="{{route('transaksi.diterima',$transaksi->id)}}" class="btn btn-sm btn-success">
-                      <i class="fa fa-check"></i>
-                    </a>
-                    <a href="{{route('transaksi.ditolak',$transaksi->id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin pembayaran ditolak ? segera hubungi nomor {{$transaksi->user->phone}}  untuk memberitahu.')">
-                      <i class="fa fa-times"></i>
-                    </a>
+                    @if($transaksi->status == 'diterima')
+                      <span class="badge badge-info">Transaksi User berhasil</span>
+                    @else
+                      <a href="{{route('transaksi.diterima',$transaksi->id)}}" class="btn btn-sm btn-success">
+                        <i class="fa fa-check"></i>
+                      </a>
+                      <a href="{{route('transaksi.ditolak',$transaksi->id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin pembayaran ditolak ? segera hubungi nomor {{$transaksi->user->phone}}  untuk memberitahu.')">
+                        <i class="fa fa-times"></i>
+                      </a>
+                    @endif
                   </td>
               </tr>
           @endforeach

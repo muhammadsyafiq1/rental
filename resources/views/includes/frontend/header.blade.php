@@ -22,8 +22,12 @@
             <li><a href="services.html" class="nav-link">Mobil Rental</a></li>
             <li><a href="cars.html" class="nav-link">Kontak</a></li>
             <li><a href="about.html" class="nav-link">Tentang</a></li> | 
+            @auth
+            <li><a href="{{route('home')}}" class="nav-link ">Dashboard Saya</a></li>
+            @else
             <li><a href="{{route('login')}}" class="nav-link">Login</a></li>
             <li><a href="{{route('register')}}" class="nav-link">Register</a></li>
+            @endauth
           </ul>
         </nav>
       </div>

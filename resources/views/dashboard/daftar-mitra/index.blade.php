@@ -22,13 +22,11 @@
 
 @section('content')
 <div class="card">
-  @if (session('status'))
-      <div class="alert alert-warning text-center">
-          {{session('status')}}
-      </div>
-  @endif
   <div class="card-body">
     <h5 style="font-weight: bold;" class="mb-3">Syarat dan ketentuan menjadi mitra</h5>
+    <div class="alert alert-warning">
+      Harap Lengkapi dahulu data pribadi anda pada menu profile. agar pendaftaran anda terhitung valid !
+    </div>
     <ul>
       <li class="nav-item">Memberikan pelayanan sebaik-baiknya pada customer</li>
       <li class="nav-item">Tidak melakukan penipuan dan kecurangan</li>
@@ -64,6 +62,18 @@
             @csrf
             <div class="modal-body">
               <div class="form-group">
+                <label>Nama</label>
+                <input class="form-control" disabled value="{{Auth::user()->name}}">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" disabled value="{{Auth::user()->email}}">
+              </div>
+              <div class="form-group">
+                <label>No hp</label>
+                <input class="form-control" disabled value="{{Auth::user()->phone}}">
+              </div>
+              <div class="form-group">
                 <label for="lama_jadi_mitra">Pilih berapa Bulan</label>
                 <select name="lama_jadi_mitra" class="form-control" id="lama_jadi_mitra">
                   <option>--Pilih--</option>
@@ -86,10 +96,6 @@
               <div class="form-group">
                 <label for="bukti_bayar">Bukti Bayar</label>
                 <input type="file" name="bukti_bayar" class="form-control" required >
-              </div>
-              <div class="form-group">
-                <label for="nomor_aktif">Wa / nomor aktif</label>
-                <input type="text" name="nomor_aktif" class="form-control" required >
               </div>
               <div class="form-group">
                 <div class="">

@@ -33,7 +33,7 @@ class TransactionController extends Controller
     public function TransaksiDiterima($id)
     {
         $transaksi = Transaction::with('user')->where('id' ,$id)->firstOrFail();
-        $transaksi->status = 'tes';
+        $transaksi->status = 'diterima';
 
         $user  = User::where('id', $transaksi->user->id)->firstOrFail();
         $user->roles = 2;
@@ -61,9 +61,9 @@ class TransactionController extends Controller
         $transaksi->total_bayar = $request->lama_jadi_mitra * 50000;
         $transaksi->bukti_bayar = $request->file('bukti_bayar')->store('bukti_bayar','public');
         $transaksi->user_id = \Auth::user()->id;
-        $transaksi->whatsapp = $request->whatsapp;
         $transaksi->status = 'pending';
         $transaksi->save();
+        return redirect()->back()->with('status','Permintaan anda sedang diproses');
     }
 
     /**

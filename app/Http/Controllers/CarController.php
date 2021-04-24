@@ -47,15 +47,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'nama_mobil' => 'required|max:50|min:3',
             'kategori_id' => 'required',
             'jumlah_kursi' => 'required|min:1',
             'jumlah_pintu' => 'required|min:1',
-            'warna_mobil' => 'required|string',
+            'warna_mobil' => 'required',
             'tranmisi_mobil' => 'required',
             'lepas_kunci' => 'required',
-            'status_mobil' => 'required',
             'stnk_mobil' => 'required',
             'nomor_plat' => 'required',
 
@@ -144,7 +144,13 @@ class CarController extends Controller
         $car_edit->biaya_supir = $request->biaya_supir;
         $car_edit->deskripsi_mobil = $request->deskripsi_mobil;
         $car_edit->harga_rental = $request->harga_rental;
-        $car_edit->biaya_supir = $request->biaya_supir;
+
+        if($request->lepas_kunci == "1"){
+            $car_edit->biaya_supir = 0;
+        }
+
+        // $car_edit->biaya_supir = $request->biaya_supir;
+
         $car_edit->user_id = Auth::user()->id;
         $car_edit->slug = Str::slug($request->nama_mobil);
         $car_edit->save();

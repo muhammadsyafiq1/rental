@@ -149,26 +149,32 @@
 			                              <strong>{{ $message }}</strong>
 			                          </span>
 			                      @enderror
-			                  </div>
-			                  <div class="col-12 col-lg-12">
-			                    Apakah mobil anda akan dirental dengan lepas kunci ?
-			                  </div>
-			                  <div class="row">
-			                  	<div class="col-12 col-lg-6">
-				                    <div class="form-check">
-				                      <input {{$car->lepas_kunci == 1 ? 'checked' : ''}} name="lepas_kunci" value="1" type="radio" class="form-check-input" id="lepas">
-				                      <label class="form-check-label" for="lepas">Ya, Lepas</label>
-				                    </div>
-				                  </div>
-				                  <div class="col-12 col-lg-6">
-					                    <div class="form-check">
-					                    <input {{$car->lepas_kunci == 0 ? 'checked' : ''}} name="lepas_kunci" value="0" type="radio" class="form-check-input" id="tidak">
-					                    <label class="form-check-label" for="tidak">Tidak Lepas</label>
-					                  </div>
-					               </div>
-			                  </div>                
+			                  </div>               
 			              </div>
 			              <div class="row">
+			              	<div class="col-12">
+			              		  Apakah mobil anda akan dirental <br> dengan lepas kunci ?
+			              	</div>
+			              </div>
+			              <div class="row">
+			              	<div class="col-lg-4 col-sm-12">
+			              		<div class="form-check">
+			                      <input {{$car->lepas_kunci == 1 ? 'checked' : ''}} name="lepas_kunci" value="1" type="radio" class="form-check-input" id="lepas">
+			                      <label class="form-check-label" for="lepas">Ya, Lepas kunci</label>
+			                    </div>
+			              	</div>
+			              	<div class="col-lg-4 col-sm-12">
+			              		<div class="form-check">
+				                    <input {{$car->lepas_kunci == 0 ? 'checked' : ''}} name="lepas_kunci" value="0" type="radio" class="form-check-input" id="tidak">
+				                    <label class="form-check-label" for="tidak">Tidak, Saya yg supir</label>
+				                 </div>
+			              	</div>
+			              	<div class="col-lg-4 col-sm-12">
+			              		<label>Biaya Sopir / jam</label>
+			              		<input type="text" name="biaya_supir" class="form-control" value="{{old('biaya_supir') ? old('biaya_supir') : $car->biaya_supir}}">
+			              	</div>
+			              </div>
+			              <div class="row mt-3">
 		                  	<div class="col-12 col-lg-12 form-group">
 		                  		<label>Deskripsi Mobil</label>
 		                  		<textarea name="deskripsi_mobil" class="form-control @error('deskripsi_mobil') is-invalid @enderror">{{$car->deskripsi_mobil}}</textarea>
@@ -285,6 +291,5 @@
             document.getElementById("file").click();
         }
     </script>
-@endpush
 @endpush
 

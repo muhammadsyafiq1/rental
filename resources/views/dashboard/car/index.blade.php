@@ -40,7 +40,7 @@
   <div class="col-4">
     <div class="card" style="width: 20rem;">
       <div class="gallery-container">
-        <img class="card-img-top" src="{{Storage::url($car->gallery->first()->foto)}}" alt="Card image cap">
+        <img class="card-img-top" src="{{Storage::url($car->gallery->first()->foto ?? '')}}" alt="Foto belum ada">
         <a href="{{route('remove.car',$car->id)}}" class="delete-gallery" onclick="return confirm('Yakin ingin menghapus {{$car->nama_mobil}} ?')">
             <img src="/backend/dist/img/icon-delete.svg">
         </a>
@@ -180,11 +180,12 @@
                   </div>
                   <div class="col-4">
                     <div class="form-check">
-                      <input name="lepas_kunci" value="0" type="radio" class="form-check-input" id="tidak">
+                      <input name="lepas_kunci" value="0" type="radio" class="form-check-input radio1" id="radio">
                       <label class="form-check-label" for="tidak">Tidak, Saya sebagai sopir</label>
                     </div>
                   </div>
-                  <div class="form-group col">
+
+                  <div class="form-group col form-biaya-supir" style="display: none">
                     <label for="biaya_supir">Biaya Supir</label>
                     <input type="text" name="biaya_supir" class="form-control">
                   </div>
@@ -261,6 +262,17 @@
           cache: true
         }
       });
-    })
+    });
+
+     $(function(){
+      $(".radio1").click(function(){
+        $(".form-biaya-supir").hide()
+          if($(this).val() == "0"){
+            $(".form-biaya-supir").show();
+          }else {
+            $(".form-biaya-supir").hidden();
+          }
+      });
+    });
   </script>
 @endpush

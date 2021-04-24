@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('user/ganti-password', [App\Http\Controllers\UserController::class, 'gantiPassword'])->name('ganti-password');
