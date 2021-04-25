@@ -16,6 +16,8 @@ class FrontendController extends Controller
 
     public function detailMobil($slug)
     {
+        $journeyDate = 
+        $returnDate = 
         $car = Car::with('user','kategori','gallery')->where('slug',$slug)->first(); 
     	return view('pages.detail-mobil.index', compact('car'));
     }

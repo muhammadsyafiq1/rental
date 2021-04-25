@@ -68,7 +68,7 @@
     @foreach($cars as $car)
     	<div class="col-lg-4 col-md-6 mb-4">
 	        <div class="item-1">
-	            <a href="{{route('dettail',$car->slug)}}"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>
+	            <a href="{{route('detail',$car->slug)}}"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>
 	            <div class="item-1-contents">
 	              <div class="text-center">
 	              <h3><a href="#">{{$car->nama_mobil}}</a></h3>

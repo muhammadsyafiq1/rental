@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
+use App\Models\Booking_detail;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class BookingDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Booking_detail  $booking_detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show(Booking_detail $booking_detail)
     {
         //
     }
@@ -52,10 +52,10 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Booking_detail  $booking_detail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit(Booking_detail $booking_detail)
     {
         //
     }
@@ -64,10 +64,10 @@ class BookingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Booking_detail  $booking_detail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Booking $booking)
+    public function update(Request $request, Booking_detail $booking_detail)
     {
         //
     }
@@ -75,20 +75,11 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Booking_detail  $booking_detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy(Booking_detail $booking_detail)
     {
         //
-    }
-
-    public function bookingCount(Request $request)
-    {
-        $journey_date  = date_create($request->journey_date);
-
-        $return_date = date_create($request->return_date);
-
-        $diff->days  = date_diff($journey_date, $return_date);
     }
 }

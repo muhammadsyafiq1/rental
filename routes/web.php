@@ -37,6 +37,7 @@ Route::get('transaksi/ditolak/{id}', [App\Http\Controllers\TransactionController
 
 Route::get('/data-semua-mobil', [App\Http\Controllers\CarController::class, 'semuaMobil'])->name('car.semuamobil');
 
+Route::resource('booking', App\Http\Controllers\BookingController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('category', App\Http\Controllers\CategoryController::class);
 Route::resource('fasilitas', App\Http\Controllers\FasilitasController::class);
