@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Booking_detail;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -57,11 +58,16 @@ class BookingController extends Controller
             'kode_transaksi' => 'Booking -'. mt_rand(100000,999999),
         ]);
 
-        Booking_detail::create([
+        $booking_detail = Booking_detail::create([
             'booking_id' => $booking->id,
             'car_id' => $request->car_id,
             'total_bayar' => $request->tot * $diff->days,
         ]);
+
+        // print pdf
+        $booking_detail = Booking_detail::with('booking.user','car.gallery')->findOrFail($booking_detail->id);
+        $pdf = PDF::loadView('pdf', compact('booking_detail'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 
     /**
