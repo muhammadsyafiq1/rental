@@ -9,7 +9,7 @@ class Booking_detail extends Model
 {
     use HasFactory;
 
-    protected $fillable [
+    protected $fillable = [
     	'booking_id','car_id','total_bayar'
     ];
 

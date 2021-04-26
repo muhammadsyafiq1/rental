@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use App\Models\Booking_detail;
 
 class BookingController extends Controller
 {
@@ -35,7 +36,32 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $journey_date  = date_create($request->mulai_rental);
+
+        $return_date = date_create($request->tanggal_kembali);
+
+        $diff  = date_diff($journey_date, $return_date); 
+
+        $mulai_rental = date('y-m-d',strtotime($request->mulai_rental)); 
+        $tanggal_kembali = date('y-m-d',strtotime($request->tanggal_kembali)); 
+
+        $booking = booking::create([
+            'user_id' => \Auth::user()->id,
+            'mulai_rental' => $mulai_rental,
+            'tanggal_kembali' => $tanggal_kembali,
+            'lama_rental' => $diff->days,
+            'lokasi_detail' => $request->lokasi_detail,
+            'berapa_orang' => $request->berapa_orang,
+            'lokasi_tujuan' => $request->lokasi_tujuan,
+            'kode_transaksi' => 'Booking -'. mt_rand(100000,999999),
+        ]);
+
+        Booking_detail::create([
+            'booking_id' => $booking->id,
+            'car_id' => $request->car_id,
+            'total_bayar' => $request->tot * $diff->days,
+        ]);
     }
 
     /**
@@ -83,12 +109,5 @@ class BookingController extends Controller
         //
     }
 
-    public function bookingCount(Request $request)
-    {
-        $journey_date  = date_create($request->journey_date);
-
-        $return_date = date_create($request->return_date);
-
-        $diff->days  = date_diff($journey_date, $return_date);
-    }
+   
 }

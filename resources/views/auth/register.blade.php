@@ -39,6 +39,32 @@
             @enderror
           </div>
           <div class="input-group mb-3">
+            <input placeholder="Masukan nomor hp / wa" id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+            @error('phone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
+          <div class="input-group mb-3">
+            <textarea placeholder="Masukan alamat" name="address" class="form-control @error('address') is-invalid @enderror"></textarea>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-map-marker"></span>
+              </div>
+            </div>
+            @error('address')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
+          <div class="input-group mb-3">
             <input placeholder="Masukan Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
             <div class="input-group-append">
               <div class="input-group-text">
@@ -67,18 +93,6 @@
             <!-- /.col -->
           </div>
         </form>
-  
-        <div class="social-auth-links text-center">
-          <p>- OR -</p>
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i>
-            Sign up using Facebook
-          </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i>
-            Sign up using Google+
-          </a>
-        </div>
   
         <a href="{{route('login')}}" class="text-center">I already have a membership</a>
       </div>

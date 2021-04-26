@@ -158,32 +158,42 @@
           </div>
       </div>
       <div class="col-lg-5">
-        <div class="row">
-        	<div class="form-group col-lg-6 col-sm-12">
-	            <label for="cf-3">Journey date</label>
-	            <input name="journey_date" type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
-	          </div>
-	          <div class="form-group col-lg-6 col-sm-12">
-	            <label for="cf-4">Return date</label>
-	            <input name="return_date" type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+      	<form action="{{route('booking.store')}}" method="post">
+      		@csrf
+      		<input type="hidden" name="tot" value="{{$tot}}">
+	      	<input type="hidden" name="car_id" value="{{$car->id}}">
+	        <div class="row">
+	        	<div class="form-group col-lg-6 col-sm-12">
+		            <label for="cf-3">Journey date</label>
+		            <input name="mulai_rental" type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
+		          </div>
+		          <div class="form-group col-lg-6 col-sm-12">
+		            <label for="cf-4">Return date</label>
+		            <input name="tanggal_kembali" type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+		        </div>
+		        <div class="form-group col-12">
+		        	<label>Lokasi tujuan anda</label>
+		        	<input type="text" name="lokasi_tujuan" class="form-control">
+		        </div>
+		        <div class="form-group col-12">
+		        	<label>Berapa orang</label>
+		        	<input type="number" name="berapa_orang" class="form-control">
+		        </div>
+		        <div class="form-group col-12">
+		        	<label for="keterangan_detail">Lokasi detail</label>
+		        	<textarea name="lokasi_detail" class="form-control"></textarea>
+		        </div>
+		        <div class="form-group col-12">
+		        	@auth
+			        	<button class="btn btn-block btn-sm btn-warning" type="submit">Order</button>
+			        	<button class="btn btn-block btn-sm btn-success" type="submit">Whatsapp</button>
+		        	@else
+			        	<a href="{{route('login')}}" onclick="return confirm('Sebelum order kamu harus login dulu sebelum lakukan order.')" class="btn btn-block btn-sm btn-warning" type="submit">Order</a>
+			        	<a href="{{route('login')}}" onclick="return confirm('Sebelum order kamu harus login dulu untuk melakukan contact.')" class="btn btn-block btn-sm btn-success" type="submit">Whatsapp</a>
+		        	@endauth
+		        </div>
 	        </div>
-	        <div class="form-group col-12">
-	        	<label>Lokasi tujuan anda</label>
-	        	<input type="text" name="tujuan_perjalanan" class="form-control">
-	        </div>
-	        <div class="form-group col-12">
-	        	<label>Berapa orang</label>
-	        	<input type="number" name="berapa_orang" class="form-control">
-	        </div>
-	        <div class="form-group col-12">
-	        	<label for="keterangan_detail">Lokasi detail</label>
-	        	<textarea name="lokasi_detail" class="form-control"></textarea>
-	        </div>
-	        <div class="form-group col-12">
-	        	<button class="btn btn-block btn-sm btn-warning" type="submit">Order</button>
-	        	<button class="btn btn-block btn-sm btn-success" type="submit">Whatsapp</button>
-	        </div>
-        </div>
+      	</form>
       </div>
     </div>
   </div>
