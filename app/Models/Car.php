@@ -12,8 +12,8 @@ class Car extends Model
 
     protected $fillable = [
     	'nama_mobil','kategori_id','biaya_supir','jumlah_kursi','jumlah_pintu',
-    	'warna_mobil','tranmisi_mobil','lepas_kunci','status_mobil','stnk_mobil','nomor_plat','user_id','slug',
-        'harga_rental','deskripsi_mobil'
+    	'warna_mobil','tranmisi_mobil','lepas_kunci','stnk_mobil','nomor_plat','user_id','slug',
+        'harga_rental','deskripsi_mobil','status'
     ];
 
     public function kategori()

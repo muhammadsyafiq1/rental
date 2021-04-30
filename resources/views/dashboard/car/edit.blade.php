@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-12 col-lg-sm-6">
-        <h1 class="m-0">Detail Mobil</h1>
+        <h1 class="m-0">Detail Mobil</h1> - {{$car->user->name ?? 'Akun telah dihapus'}}
       </div><!-- /.col-12 col-lg -->
       <div class="col-12 col-lg-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
 <div class="card">
 		<div class="card-header">
 			<div class="card-title">
-				{{$car->nama_mobil}} - {{$car->status_mobil == 1 ? 'TERSEDIA' : 'SEDANG DIRENTAL'}}
+				{{$car->nama_mobil}} - {{$car->status}}
 			</div>
 		</div>
 		<form method="post" action="{{route('car.update',$car->id)}}" enctype="multipart/form-data">

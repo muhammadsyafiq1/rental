@@ -72,9 +72,10 @@ class CarController extends Controller
         $car->warna_mobil = $request->warna_mobil;
         $car->tranmisi_mobil = $request->tranmisi_mobil;
         $car->lepas_kunci = $request->lepas_kunci;
-        $car->status_mobil = 0;
+        // $car->status_mobil = 0;
         $car->stnk_mobil = $request->stnk_mobil;
         $car->nomor_plat = $request->nomor_plat;
+        $car->status = 'tersedia';
         $car->user_id = Auth::user()->id;
         $car->slug = Str::slug($request->nama_mobil);
         $car->save();

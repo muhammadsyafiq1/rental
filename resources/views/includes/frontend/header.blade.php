@@ -18,7 +18,7 @@
 
         <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
           <ul class="site-menu main-menu js-clone-nav ml-auto ">
-            <li class="active"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
             <li><a href="{{route('lihat-semua-mobil')}}" class="nav-link">Mobil Rental</a></li>
             <li><a href="cars.html" class="nav-link">Kontak</a></li>
             <li><a href="about.html" class="nav-link">Tentang</a></li> | 

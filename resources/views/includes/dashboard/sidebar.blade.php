@@ -86,6 +86,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('datariwayatbooking')}}" class="nav-link">
+                <i class="nav-icon fa fa-history"></i>
+                <p>
+                  Informasi rental
+                </p>
+              </a>
+            </li>
           @endif
 
           @if(Auth::user()->roles == 1)

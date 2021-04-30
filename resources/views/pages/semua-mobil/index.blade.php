@@ -13,7 +13,7 @@
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-6 text-center">
           <h1>Semua mobil rental</h1>
-          <p>Terdapat sebanyak <span class="text-warning" style="font-weight: bold;">{{$totCar}}</span> yang bekerja sama dengan rent car.</p>
+          <p>Terdapat sebanyak <span class="text-warning" style="font-weight: bold;">{{$tot}}</span> yang bekerja sama dengan rent car.</p>
         </div>
       </div>
     </div>
@@ -24,31 +24,26 @@
 <div class="container">
     <div class="row">
       <div class="col-12"> 
-          <form class="trip-form">
+          <form class="trip-form" action="{{route('lihat-semua-mobil')}}">
             <div class="row align-items-center mb-4">
               <div class="col-md-6">
                 <h3 class="m-0">Begin your trip here</h3>
               </div>
               <div class="col-md-6 text-md-right">
-                <span class="text-primary">{{$totCar}}</span> <span>Mobil Tersedia</span></span>
+                <span class="text-primary">{{$tot}}</span> <span>Mobil Tersedia</span></span>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-3">
-                <label for="cf-1">Where you from</label>
-                <input type="text" id="cf-1" placeholder="Your pickup address" class="form-control">
+              <div class="form-group col-md-6">
+                <label for="cf-1"></label>
+                <input name="nama_mobil" type="text" id="cf-1" placeholder="Cari berdasarkan merk mobil" class="form-control">
               </div>
-              <div class="form-group col-md-3">
-                <label for="cf-2">Where you go</label>
-                <input type="text" id="cf-2" placeholder="Your drop-off address" class="form-control">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="cf-3">Journey date</label>
-                <input type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="cf-4">Return date</label>
-                <input type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
+              <div class="form-group col-md-6">
+                <label for="cf-2"></label>
+                <select id="cf-1" class="form-control" name="lepas_kunci">
+                  <option value="0">With driver</option>
+                  <option value="1">Self Driver</option>
+                </select>
               </div>
             </div>
             <div class="row">
@@ -65,7 +60,8 @@
 <div class="site-section bg-light">
   <div class="container">
     <div class="row">
-    @foreach($cars as $car)
+    @forelse($cars as $car)
+    @if($car->user->status == 'aktif')
     	<div class="col-lg-4 col-md-6 mb-4">
 	        <div class="item-1">
 	            <a href="{{route('detail',$car->slug)}}"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>
@@ -92,13 +88,31 @@
                       <span class="spec">{{$car->kategori->kategori_mobil}}</span>
                     </li>
                   </ul>
-	              <div class="d-flex action">
-	                <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
-	              </div>
+	              <div class="d-flex justify-content-between action">
+                    <div>
+                      <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
+                    </div>
+                    <div>
+                      @auth
+                        <a href="{{route('simpan.mobil',$car->id)}}" class="btn btn-warning">Simpan</a>
+                      @else
+                        <a href="{{route('login')}}" class="btn btn-warning" onclick="return confirm('kamu harus login dulu.')">Simpan</a>
+                      @endauth
+                    </div>
+                  </div>
 	            </div>
 	        </div>
       	</div>  
-    @endforeach
+        @endif
+      @empty
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-warning">
+            Tidak ditemukan  <a href="{{route('lihat-semua-mobil')}}"> Lihat semua mobil</a>
+          </div>
+        </div>
+      </div>
+    @endforelse
     </div>
     <div class="row">
     	<div class="col-12">

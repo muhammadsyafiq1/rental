@@ -44,8 +44,8 @@
       <tbody>
         @foreach ($transaksis as $transaksi)
               <tr class="bg-dark">
-                  <td style="font-weight: bold;" class="text-success">{{$transaksi->user->email}}</td>
-                  <td>{{$transaksi->user->phone}}</td>
+                  <td style="font-weight: bold;" class="text-success">{{$transaksi->user->email ?? 'invalid'}}</td>
+                  <td>{{$transaksi->user->phone ?? 'invalid'}}</td>
                   <td>{{$transaksi->lama_jadi_mitra}} Bulan</td>
                   <td>Rp. {{number_format($transaksi->total_bayar)}}</td>
                   <td>

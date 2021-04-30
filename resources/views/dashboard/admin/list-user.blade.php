@@ -64,8 +64,13 @@
                   <td>
                       <form action="{{route('user.destroy',$user->id)}}" method="post" class="d-inline">
                         @csrf @method('delete')
+                        @if($user->status == 'aktif')
+                          <a href="{{route('user.nonaktif',$user->id)}}" class="btn btn-sm btn-secondary">Nonaktifkan</a>
+                        @elseif($user->status == 'nonaktif')
+                          <a href="{{route('user.aktif',$user->id)}}" class="btn btn-sm btn-info">Aktifkan</a>
+                        @endif
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin Ingin Menghapus User?')">
-                          <i class="fa fa-trash"> Hapus</i>
+                          Hapus
                         </button>
                       </form>
                   </td>

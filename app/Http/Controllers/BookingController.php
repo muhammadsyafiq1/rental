@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Booking_detail;
+use App\Models\Car;
 use PDF;
 
 class BookingController extends Controller
@@ -65,9 +66,9 @@ class BookingController extends Controller
         ]);
 
         // print pdf
-        $booking_detail = Booking_detail::with('booking.user','car.gallery')->findOrFail($booking_detail->id);
-        $pdf = PDF::loadView('pdf', compact('booking_detail'))->setPaper('a4', 'landscape');
-        return $pdf->stream();
+        // $booking_detail = Booking_detail::with('booking.user','car.gallery')->findOrFail($booking_detail->id);
+        // $pdf = PDF::loadView('pdf', compact('booking_detail'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
     }
 
     /**
@@ -115,5 +116,32 @@ class BookingController extends Controller
         //
     }
 
-   
+
+    // roles 2
+    public function riwayatBooking()
+    {
+        $dataSimpanBooking = Booking_detail::with(['booking.user','car.gallery'])->whereHas('car', function($car){
+            $car->where('user_id', \Auth::user()->id);
+        })->get(); 
+
+        return view('dashboard.admin.riwayat', compact('dataSimpanBooking'));
+    }
+
+    // public function riwayat_laundry_saya()
+    // {
+    //     $buyTransaction = Transaction_detail::with(['transaction.user','laundry.gallery'])->whereHas('transaction', function($transaction){
+    //         $transaction->where('user_id', Auth::user()->id);
+    //     })->paginate(10);  
+
+    //     return view('dashboard.customer.riwayat.index', compact(['buyTransaction']));
+    // }
+
+    public function mobilDikembalikan($id)
+    {
+        $car = Car::findOrFail($id); 
+        $car->status = 'Tersedia';
+        $car->save();
+        return redirect()->back()->with('status','Mobil telah dikembalikan');
+    }
+
 }

@@ -37,6 +37,7 @@ class TransactionController extends Controller
 
         $user  = User::where('id', $transaksi->user->id)->firstOrFail();
         $user->roles = 2;
+        $user->status = 'aktif';
 
         $user->save();
         $transaksi->save();

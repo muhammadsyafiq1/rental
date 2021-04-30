@@ -125,6 +125,22 @@ class UserController extends Controller
         return redirect()->back()->with('status','Profile berhasil diubah');
     }
 
+    public function aktifkan($id)
+    {
+        $user = User::findOrfail($id);
+        $user->status = 'aktif';
+        $user->save();
+        return redirect()->back()->with('status','user berhasil diaktifkan');
+    }
+
+    public function nonaktifkan($id)
+    {
+        $user = User::findOrfail($id);
+        $user->status = 'nonaktif';
+        $user->save();
+        return redirect()->back()->with('status','user berhasil dinonaktifkan');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

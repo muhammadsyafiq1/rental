@@ -37,6 +37,21 @@ Route::get('transaksi/ditolak/{id}', [App\Http\Controllers\TransactionController
 
 Route::get('/data-semua-mobil', [App\Http\Controllers\CarController::class, 'semuaMobil'])->name('car.semuamobil');
 
+// mobil di booking
+Route::get('/data-riwayat-booking', [App\Http\Controllers\BookingController::class,'riwayatBooking'])->name('datariwayatbooking');
+
+// ganti status mobil di booking menjadi dikembalikan
+Route::get('/booking/dikembalikan/{id}', [App\Http\Controllers\BookingController::class, 'mobilDikembalikan'])->name('booking.selesai-rental');
+
+// nonaktifkan user
+Route::get('/user/nonaktifkan/{id}', [App\Http\Controllers\UserController::class, 'nonaktifkan'])->name('user.nonaktif');
+
+// aktifkan user
+Route::get('/user/aktifkan/{id}', [App\Http\Controllers\UserController::class, 'aktifkan'])->name('user.aktif');
+
+// simpan mobil
+Route::get('/simpan/mobil/{id}', [App\Http\Controllers\SimpanController::class, 'simpan'])->name('simpan.mobil');
+
 Route::resource('booking', App\Http\Controllers\BookingController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('category', App\Http\Controllers\CategoryController::class);

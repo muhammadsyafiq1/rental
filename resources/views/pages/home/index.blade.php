@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="site-section pt-0 pb-0 bg-light">
+    {{-- <div class="site-section pt-0 pb-0 bg-light">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -97,7 +97,7 @@
             </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     
 
@@ -148,8 +148,17 @@
                       <span class="spec">{{$car->kategori->kategori_mobil}}</span>
                     </li>
                   </ul>
-                  <div class="d-flex action">
-                    <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
+                  <div class="d-flex justify-content-between action">
+                    <div>
+                      <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
+                    </div>
+                    <div>
+                      @auth
+                        <a href="{{route('simpan.mobil',$car->id)}}" class="btn btn-warning">Simpan</a>
+                      @else
+                        <a href="{{route('login')}}" class="btn btn-warning" onclick="return confirm('kamu harus login dulu.')">Simpan</a>
+                      @endauth
+                    </div>
                   </div>
                 </div>
               </div>
