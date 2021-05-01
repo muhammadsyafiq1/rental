@@ -51,6 +51,8 @@ Route::get('/user/aktifkan/{id}', [App\Http\Controllers\UserController::class, '
 
 // simpan mobil
 Route::get('/simpan/mobil/{id}', [App\Http\Controllers\SimpanController::class, 'simpan'])->name('simpan.mobil');
+Route::get('/simpan/mobil', [App\Http\Controllers\SimpanController::class, 'index'])->name('lihat-mobil-tersimpan');
+Route::get('hapus/mobil/disimpan/{id}', [App\Http\Controllers\SimpanController::class, 'remove'])->name('hapus.mobil.disimpan');
 
 Route::resource('booking', App\Http\Controllers\BookingController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);

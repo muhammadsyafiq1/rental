@@ -40,6 +40,12 @@
                 <p>Menjadi mitra kami</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('lihat-mobil-tersimpan')}}" class="nav-link">
+                <i class="fa fa-save nav-icon"></i>
+                <p>Mobil disimpan</p>
+              </a>
+            </li>
           @endif
 
            <li class="nav-item ">
@@ -101,7 +107,7 @@
               <a href="{{route('user.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-users"></i>
                 <p>
-                  Data Master Pengguna
+                  Kelola data pengguna
                 </p>
               </a>
             </li>
@@ -109,7 +115,7 @@
               <a href="{{route('car.semuamobil')}}" class="nav-link">
                 <i class="nav-icon fa fa-car"></i>
                 <p>
-                  Data Master Mobil
+                  Kelola data mobil
                 </p>
               </a>
             </li>
@@ -117,7 +123,7 @@
               <a href="{{route('transaction.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
                 <p>
-                  Transaksi 
+                  Transaksi masuk
                 </p>
               </a>
             </li>

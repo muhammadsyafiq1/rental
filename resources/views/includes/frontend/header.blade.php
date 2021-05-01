@@ -5,7 +5,7 @@
 
       <div class="col-3 ">
         <div class="site-logo">
-          <a href="index.html">CarRent</a>
+          <a href="{{url('/')}}">CarRent</a>
         </div>
       </div>
 
@@ -20,8 +20,7 @@
           <ul class="site-menu main-menu js-clone-nav ml-auto ">
             <li class="active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
             <li><a href="{{route('lihat-semua-mobil')}}" class="nav-link">Mobil Rental</a></li>
-            <li><a href="cars.html" class="nav-link">Kontak</a></li>
-            <li><a href="about.html" class="nav-link">Tentang</a></li> | 
+            <li><a href="cars.html" class="nav-link">Kontak</a></li>| 
             @auth
             <li><a href="{{route('home')}}" class="nav-link ">Dashboard Saya</a></li>
             @else
