@@ -33,20 +33,6 @@
               </p>
             </a>
           </li>
-          @if(Auth::user()->roles == 3)
-            <li class="nav-item">
-              <a href="{{route('daftar.mitra',Auth::user()->id)}}" class="nav-link">
-                <i class="fa fa-car nav-icon"></i>
-                <p>Menjadi mitra kami</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('lihat-mobil-tersimpan')}}" class="nav-link">
-                <i class="fa fa-save nav-icon"></i>
-                <p>Mobil disimpan</p>
-              </a>
-            </li>
-          @endif
 
            <li class="nav-item ">
             <a href="#" class="nav-link">
@@ -65,6 +51,27 @@
               </li>
             </ul>
           </li>
+
+           @if(Auth::user()->roles == 3)
+            <li class="nav-item">
+              <a href="{{route('daftar.mitra',Auth::user()->id)}}" class="nav-link">
+                <i class="fa fa-car nav-icon"></i>
+                <p>Menjadi mitra kami</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('lihat-mobil-tersimpan')}}" class="nav-link">
+                <i class="fa fa-save nav-icon"></i>
+                <p>Mobil disimpan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('beri.testimonial')}}" class="nav-link">
+                <i class="fa fa-comments nav-icon"></i>
+                <p>Beri Ulasan</p>
+              </a>
+            </li>
+          @endif
 
 
           @if(Auth::user()->roles == 2)

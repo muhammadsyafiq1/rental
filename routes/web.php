@@ -54,6 +54,10 @@ Route::get('/simpan/mobil/{id}', [App\Http\Controllers\SimpanController::class, 
 Route::get('/simpan/mobil', [App\Http\Controllers\SimpanController::class, 'index'])->name('lihat-mobil-tersimpan');
 Route::get('hapus/mobil/disimpan/{id}', [App\Http\Controllers\SimpanController::class, 'remove'])->name('hapus.mobil.disimpan');
 
+// beri testimonial
+Route::get('beri/testimonial', [App\Http\Controllers\TestimonialController::class, 'index'])->name('beri.testimonial');
+Route::post('buat/testimonial', [App\Http\Controllers\TestimonialController::class, 'store'])->name('testimonial.store');
+
 Route::resource('booking', App\Http\Controllers\BookingController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('category', App\Http\Controllers\CategoryController::class);
