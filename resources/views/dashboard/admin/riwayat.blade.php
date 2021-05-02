@@ -31,36 +31,41 @@
     <table id="tb_riwayat" class="table table-striped">
       <thead>
         <tr>
-          <th>Avatar</th>
-          <th>Nama</th>
-          <th>Handphone</th>
+          <th>Mobil Rental</th>
+          <th>Foto CS</th>
+          <th>Nama CS</th>
+          <th>Handphone CS</th>
           <th>Mulai</th>
           <th>Selesai</th>
-          <th>Mobil</th>
+          <th>Biaya</th>
           <th>actions</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($dataSimpanBooking as $booking)
               <tr class="bg-dark">
+                <td>{{$booking->car->nama_mobil}}</td>
               	<td>
               	  @if ($booking->booking->user->avatar)
 		              <img src="{{ Storage::url($booking->booking->user->avatar) }}" class="img-circle elevation-2">
 		          @else
-		              <img src="https://ui-avatars.com/api/?name={{ $booking->booking->user->name }}" height="60" class="img-circle elevation-2" style="background-color: blue;" />
+		              <img src="https://ui-avatars.com/api/?name={{ $booking->booking->user->name }}" height="60" class="img-circle elevation-2" />
 		          @endif
               	</td>
               	<td>{{$booking->booking->user->name}}</td>
               	<td>{{$booking->booking->user->phone}}</td>
               	<td>{{date('d-M-Y'.strtotime($booking->booking->tanggal_mulai))}}</td>
-              	<td>{{date('d-M-Y',strtotime($booking->booking->tanggal_kembali))}}</td>
-              	<td>{{$booking->car->nama_mobil}}</td>
+              	<td>{{date('d-M-Y',strtotime($booking->booking->tanggal_kembali))}}</td>               <td>Rp. {{number_format($booking->total_bayar)}}</td>
               	<td>
               		@if($booking->car->status == 'dirental')
               			<a href="{{route('booking.selesai-rental',$booking->car->id)}}" class="btn btn-sm btn-success">
               				Dikembalikan
               			</a>
-              		@endif
+              		@elseif($booking->car->status == 'tersedia')
+                    <a href="{{route('booking.rental',$booking->car->id)}}" class="btn btn-sm btn-warning">
+                      Rentalkan
+                    </a>
+                  @endif
               	</td>
               </tr>
           @endforeach

@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->date('mulai_rental');
             $table->date('tanggal_kembali');
             $table->string('lama_rental');
-            $table->text('lokasi_detail');
+            $table->text('lokasi_detail')->nullable();
             $table->integer('berapa_orang');
             $table->string('lokasi_tujuan');
             $table->string('kode_transaksi');

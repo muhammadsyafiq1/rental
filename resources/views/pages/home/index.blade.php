@@ -223,40 +223,21 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 mb-4 mb-lg-0">
+          @foreach($testimonials as $testimonial)
+            <div class="col-lg-4 mb-4 mb-lg-0">
             <div class="testimonial-2">
               <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
+                <q>{{$testimonial->testimonial}}</q>
               </blockquote>
               <div class="d-flex v-card align-items-center">
                 <img src="/frontend/images/person_1.jpg" alt="Image" class="img-fluid mr-3">
-                <span>Mike Fisher</span>
+                <span>{{$testimonial->user->name}}</span>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="testimonial-2">
-              <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
-              </blockquote>
-              <div class="d-flex v-card align-items-center">
-                <img src="/frontend/images/person_2.jpg" alt="Image" class="img-fluid mr-3">
-                <span>Jean Stanley</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <div class="testimonial-2">
-              <blockquote class="mb-4">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum"</p>
-              </blockquote>
-              <div class="d-flex v-card align-items-center">
-                <img src="/frontend/images/person_3.jpg" alt="Image" class="img-fluid mr-3">
-                <span>Katie Rose</span>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
+        {{$testimonials->links()}}
       </div>
     </div>
 @stop

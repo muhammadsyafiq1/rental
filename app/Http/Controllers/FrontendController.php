@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Testimonial;
 
 class FrontendController extends Controller
 {
     public function index(Request $request)
     {
-    	
+    	$testimonials = Testimonial::with('user')->paginate(6);
     	$cars = Car::with('gallery','kategori')->where('status','tersedia')->orderBy('id','DESC')->take(6)->get();
-    	return view('pages.home.index', compact('cars')); 
+    	return view('pages.home.index', compact('cars','testimonials')); 
     }
 
     public function detailMobil($slug)

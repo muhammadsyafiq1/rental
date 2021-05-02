@@ -57,6 +57,7 @@ class BookingController extends Controller
             'berapa_orang' => $request->berapa_orang,
             'lokasi_tujuan' => $request->lokasi_tujuan,
             'kode_transaksi' => 'Booking -'. mt_rand(100000,999999),
+            'status' => 'Pending',
         ]);
 
         $booking_detail = Booking_detail::create([
@@ -139,9 +140,17 @@ class BookingController extends Controller
     public function mobilDikembalikan($id)
     {
         $car = Car::findOrFail($id); 
-        $car->status = 'Tersedia';
+        $car->status = 'tersedia';
         $car->save();
         return redirect()->back()->with('status','Mobil telah dikembalikan');
+    }
+
+    public function mobilDirental($id)
+    {
+        $car = Car::findOrFail($id); 
+        $car->status = 'dirental';
+        $car->save();
+        return redirect()->back()->with('status','Mobil telah direntalkan');
     }
 
 }

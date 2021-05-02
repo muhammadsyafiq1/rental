@@ -42,6 +42,8 @@ Route::get('/data-riwayat-booking', [App\Http\Controllers\BookingController::cla
 
 // ganti status mobil di booking menjadi dikembalikan
 Route::get('/booking/dikembalikan/{id}', [App\Http\Controllers\BookingController::class, 'mobilDikembalikan'])->name('booking.selesai-rental');
+// route status mobil dibooking menjadi dirental
+Route::get('/booking/dirental/{id}', [App\Http\Controllers\BookingController::class, 'mobilDirental'])->name('booking.rental');
 
 // nonaktifkan user
 Route::get('/user/nonaktifkan/{id}', [App\Http\Controllers\UserController::class, 'nonaktifkan'])->name('user.nonaktif');

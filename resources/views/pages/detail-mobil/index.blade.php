@@ -173,14 +173,30 @@
 		        </div>
 		        <div class="form-group col-12">
 		        	<label>Lokasi tujuan anda</label>
-		        	<input type="text" name="lokasi_tujuan" class="form-control">
+		        	<input type="text" name="lokasi_tujuan" class="form-control" autocomplete>
 		        </div>
 		        <div class="form-group col-12">
 		        	<label>Berapa orang</label>
-		        	<input type="number" name="berapa_orang" class="form-control">
+		        	<input type="number" name="berapa_orang" class="form-control" autocomplete>
 		        </div>
 		        <div class="form-group col-12">
-		        	<label for="keterangan_detail">Lokasi detail</label>
+		        	<span>Apakah anda ingin mobil diantar ketempat anda ?</span> <br>
+		        	<div class="form-check">
+					  <input class="form-check-input" type="radio" name="exampleRadios" id="tombol_show" value="option1">
+					  <label class="form-check-label" for="tombol_show">
+					    Iya terimakasih, Silahkan diantar
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="exampleRadios" id="tombol_hide" value="option2">
+					  <label class="form-check-label" for="tombol_hide">
+					    Tidak terimakasih, saya yang akan menjemput
+					  </label>
+					</div>
+		        </div>
+				
+		        <div class="form-group col-12" id="box">
+		        	<label for="keterangan_detail">Lokasi detail pengantaran Mobil</label>
 		        	<textarea name="lokasi_detail" class="form-control"></textarea>
 		        </div>
 		        <div class="form-group col-12">
@@ -200,3 +216,19 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+   $(document).ready(function() {
+  
+     $("#tombol_hide").click(function() {
+       $("#box").hide();
+     })
+  
+     $("#tombol_show").click(function() {
+       $("#box").show();
+     })
+  
+   });
+   </script>
+@endpush
