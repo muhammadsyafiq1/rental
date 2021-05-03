@@ -60,6 +60,8 @@ Route::get('hapus/mobil/disimpan/{id}', [App\Http\Controllers\SimpanController::
 Route::get('beri/testimonial', [App\Http\Controllers\TestimonialController::class, 'index'])->name('beri.testimonial');
 Route::post('buat/testimonial', [App\Http\Controllers\TestimonialController::class, 'store'])->name('testimonial.store');
 
+Route::get('success/{id}',[App\Http\Controllers\BookingController::class, 'success'])->name('success');
+
 Route::resource('booking', App\Http\Controllers\BookingController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('category', App\Http\Controllers\CategoryController::class);

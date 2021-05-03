@@ -57,7 +57,7 @@ class BookingController extends Controller
             'berapa_orang' => $request->berapa_orang,
             'lokasi_tujuan' => $request->lokasi_tujuan,
             'kode_transaksi' => 'Booking -'. mt_rand(100000,999999),
-            'status' => 'Pending',
+            // 'status' => 'Pending',
         ]);
 
         $booking_detail = Booking_detail::create([
@@ -66,10 +66,17 @@ class BookingController extends Controller
             'total_bayar' => $request->tot * $diff->days,
         ]);
 
+        return redirect()->route('success',$booking_detail->id);
         // print pdf
         // $booking_detail = Booking_detail::with('booking.user','car.gallery')->findOrFail($booking_detail->id);
         // $pdf = PDF::loadView('pdf', compact('booking_detail'))->setPaper('a4', 'landscape');
         // return $pdf->stream();
+    }
+
+    public function success($id)
+    {
+        $booking_detail = Booking_detail::with('booking.user','car.user')->findOrFail($id);
+        return view('success', compact('booking_detail'));
     }
 
     /**
