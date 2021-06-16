@@ -14,8 +14,8 @@ class CreateUpdate2User extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('alamat');
-            $table->integer('phone');
+            $table->text('alamat')->nullable();
+            $table->string('phone')->nullable();
         });
     }
 
