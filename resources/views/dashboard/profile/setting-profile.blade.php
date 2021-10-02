@@ -14,7 +14,7 @@
                 </div>
         @endif
         <div class="card card-primary card-outline">
-            <form action="{{route('user.update',$user->id)}}" method="post">
+            <form action="{{route('user.update',$user->id)}}" method="post" enctype="multipart/form-data">
                 @csrf @method('put')
                 <div class="card-body box-profile">
                     <div class="text-center">

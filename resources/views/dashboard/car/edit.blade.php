@@ -231,7 +231,7 @@
                     Selesai 
                 </a>
                 @else
-                <button class="btn btn-secondary btn-block mt-3" onclick="thisFileUpload()" type="button">
+                <button class="btn btn-secondary btn-block mt-3" style="margin-bottom: 70px;" onclick="thisFileUpload()" type="button">
                     Add Photo
                 </button>
                 @endif

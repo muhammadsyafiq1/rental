@@ -201,11 +201,18 @@
 		        </div>
 		        <div class="form-group col-12">
 		        	@auth
-			        	<button class="btn btn-block btn-sm btn-warning" type="submit">Order</button>
-			        	<button class="btn btn-block btn-sm btn-success" type="submit">Whatsapp</button>
+						@if($car->status == 'dirental')
+			        		<button class="btn btn-block btn-sm btn-warning" type="submit" disabled>
+								Sedang dirental
+							</button>
+						@else
+			        		<button class="btn btn-block btn-sm btn-warning" type="submit">Order</button>
+						@endif
+
+			        	<button class="btn btn-block btn-sm btn-success" type="submit">Telefon</button>
 		        	@else
 			        	<a href="{{route('login')}}" onclick="return confirm('Sebelum order kamu harus login dulu sebelum lakukan order.')" class="btn btn-block btn-sm btn-warning" type="submit">Order</a>
-			        	<a href="{{route('login')}}" onclick="return confirm('Sebelum order kamu harus login dulu untuk melakukan contact.')" class="btn btn-block btn-sm btn-success" type="submit">Whatsapp</a>
+			        	<a href="{{route('login')}}" onclick="return confirm('Sebelum order kamu harus login dulu untuk melakukan contact.')" class="btn btn-block btn-sm btn-success" type="submit">Telefon</a>
 		        	@endauth
 		        </div>
 	        </div>

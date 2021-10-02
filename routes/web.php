@@ -18,7 +18,7 @@ Auth::routes();
 
 // view frontend
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
-Route::get('/lihat-semua-mobil', [App\Http\Controllers\FrontendController::class, 'SemuaMobil'])->name('lihat-semua-mobil');
+Route::get('lihat-semua-mobil', [App\Http\Controllers\FrontendController::class, 'SemuaMobil'])->name('lihat-semua-mobil');
 Route::get('/mobil/detail/{slug}', [App\Http\Controllers\FrontendController::class, 'detailMobil'])->name('detail');
 
 
@@ -35,10 +35,13 @@ Route::get('daftar-jadi-mitra/{id}', [App\Http\Controllers\UserController::class
 Route::get('transaksi/diterima/{id}', [App\Http\Controllers\TransactionController::class, 'TransaksiDiterima'])->name('transaksi.diterima');
 Route::get('transaksi/ditolak/{id}', [App\Http\Controllers\TransactionController::class, 'TransaksiDitolak'])->name('transaksi.ditolak');
 
+Route::get('car/setujui/{id}', [App\Http\Controllers\CarController::class, 'setujui'])->name('car.setujui');
+
 Route::get('/data-semua-mobil', [App\Http\Controllers\CarController::class, 'semuaMobil'])->name('car.semuamobil');
 
 // mobil di booking
 Route::get('/data-riwayat-booking', [App\Http\Controllers\BookingController::class,'riwayatBooking'])->name('datariwayatbooking');
+Route::get('/informasi-rental-saya', [App\Http\Controllers\BookingController::class,'riwayatRentalSaya'])->name('informasi-rental-saya');
 
 // ganti status mobil di booking menjadi dikembalikan
 Route::get('/booking/dikembalikan/{id}', [App\Http\Controllers\BookingController::class, 'mobilDikembalikan'])->name('booking.selesai-rental');

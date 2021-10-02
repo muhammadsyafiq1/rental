@@ -42,8 +42,9 @@
   <div class="card-body">
   	<div class="">
   		@forelse($testimonials as $testimonial)
-  			<h5 class="text-muted text-uppercase mb-3"> {{$testimonial->user->name}}</h5>
-	  		<q class="text-uppercase">{{$testimonial->testimonial}}</q>
+  			<div class="btn btn-block btn-sm btn-success">
+          <i class="fa fa-check"> Testimoni telah diberikan.</i>
+        </div>
   		@empty
   			<div class="row">
   				<div class="col-12 text-center">
@@ -65,7 +66,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Beri ulasan dengan jujur</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Testimoni web RenCar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

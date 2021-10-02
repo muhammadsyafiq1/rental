@@ -38,9 +38,6 @@
     </ul>
 
     <ul>
-      <li class="nav-item">Biaya menjadi mitra rent car perbulannya sebesar 50000</li>
-      <li class="nav-item">Setalah menjadi mitra harap membayar biaya bulanan tepat waktu</li>
-      <li class="nav-item">Saat masa mitra telah habis mobil yang terdaftar akan dinonaktifkan hingga pembaharuan masa mitra</li>
       <li class="nav-item">Jika anda tertarik menjadi mitra silahkan mendaftar <a href="#" data-toggle="modal" data-target="#exampleModal">Disini</a></li>
     </ul>
   </div>
@@ -58,8 +55,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('transaction.store')}}" method="post" enctype="multipart/form-data">
-            @csrf
+        <form action="{{route('user.update',Auth::user()->id)}}" method="post" enctype="multipart/form-data">
+            @csrf @method('put')
             <div class="modal-body">
               <div class="form-group">
                 <label>Nama</label>
@@ -74,6 +71,10 @@
                 <input class="form-control" disabled value="{{Auth::user()->phone}}">
               </div>
               <div class="form-group">
+                <label>Foto</label>
+                <input class="form-control" type="file" required name="avatar">
+              </div>
+              <!-- <div class="form-group">
                 <label for="lama_jadi_mitra">Pilih berapa Bulan</label>
                 <select name="lama_jadi_mitra" class="form-control" id="lama_jadi_mitra">
                   <option>--Pilih--</option>
@@ -96,7 +97,7 @@
               <div class="form-group">
                 <label for="bukti_bayar">Bukti Bayar</label>
                 <input type="file" name="bukti_bayar" class="form-control" required >
-              </div>
+              </div> -->
               <div class="form-group">
                 <div class="">
                   <p>Saya "{{Auth::user()->name}}" ingin mendaftar menjadi mitra rent car. 

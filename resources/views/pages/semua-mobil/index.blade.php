@@ -27,10 +27,10 @@
           <form class="trip-form" action="{{route('lihat-semua-mobil')}}">
             <div class="row align-items-center mb-4">
               <div class="col-md-6">
-                <h3 class="m-0">Begin your trip here</h3>
+                <h3 class="m-0">Temukan mobil kesukaanmu</h3>
               </div>
               <div class="col-md-6 text-md-right">
-                <span class="text-primary">{{$tot}}</span> <span>Mobil Tersedia</span></span>
+                <!-- <span class="text-primary">{{$tot}}</span> <span>Mobil Tersedia</span></span> -->
               </div>
             </div>
             <div class="row">
@@ -61,7 +61,7 @@
   <div class="container">
     <div class="row">
     @forelse($cars as $car)
-    @if($car->user->status == 'aktif')
+    @if($car->approved_admin != 'belum')
     	<div class="col-lg-4 col-md-6 mb-4">
 	        <div class="item-1">
 	            <a href="{{route('detail',$car->slug)}}"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>

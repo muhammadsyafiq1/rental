@@ -135,14 +135,14 @@ class BookingController extends Controller
         return view('dashboard.admin.riwayat', compact('dataSimpanBooking'));
     }
 
-    // public function riwayat_laundry_saya()
-    // {
-    //     $buyTransaction = Transaction_detail::with(['transaction.user','laundry.gallery'])->whereHas('transaction', function($transaction){
-    //         $transaction->where('user_id', Auth::user()->id);
-    //     })->paginate(10);  
+    public function riwayatRentalSaya ()
+    {
+        $riwayatRentalSaya = Booking_detail::with(['booking.user','car.gallery'])->whereHas('booking', function($booking){
+            $booking->where('user_id', \Auth::user()->id);
+        })->get(); 
 
-    //     return view('dashboard.customer.riwayat.index', compact(['buyTransaction']));
-    // }
+        return view('dashboard.customer.index', compact(['riwayatRentalSaya']));
+    }
 
     public function mobilDikembalikan($id)
     {

@@ -101,7 +101,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // dd($request->all()); die;
         $request->validate([
             'name' => 'required|min:4',
             'phone' => 'required|max:13',

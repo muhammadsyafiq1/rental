@@ -47,7 +47,7 @@
                 <td>{{$booking->car->nama_mobil}}</td>
               	<td>
               	  @if ($booking->booking->user->avatar)
-		              <img src="{{ Storage::url($booking->booking->user->avatar) }}" class="img-circle elevation-2">
+		              <img src="{{ Storage::url($booking->booking->user->avatar) }}" class="img-circle elevation-2" height="60">
 		          @else
 		              <img src="https://ui-avatars.com/api/?name={{ $booking->booking->user->name }}" height="60" class="img-circle elevation-2" />
 		          @endif

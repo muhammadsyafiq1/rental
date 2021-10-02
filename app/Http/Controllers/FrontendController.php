@@ -26,7 +26,7 @@ class FrontendController extends Controller
     public function SemuaMobil(Request $request)
     {
         // dd($request->all()); die;
-        $tot = Car::where('status','tersedia')->count();
+        $tot = Car::count();
         $lepasKunci = $request->lepas_kunci;
         $nama_mobil = $request->nama_mobil;
         if($nama_mobil){

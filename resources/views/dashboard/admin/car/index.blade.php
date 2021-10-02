@@ -53,7 +53,12 @@
             <li class="text-muted">Color     : {{$car->warna_mobil}}</li>
             <li class="text-muted">Type      : {{$car->kategori->kategori_mobil}}</li>
         </p>
-        <a href="{{route('car.edit',$car->id)}}" class="btn btn-sm btn-block btn-info btn-shadow">Detail / Edit</a>
+        <a href="{{route('car.edit',$car->id)}}" class="btn btn-sm btn-block btn-info btn-shadow mb-2">Detail / Edit</a>
+        @if($car->approved_admin == 'belum')
+          <a href="{{route('car.setujui',$car->id)}}" class="btn btn-sm btn-block btn-warning btn-shadow mb-2">Setujui</a>
+        @else
+          <i class="fa fa-check text-success"></i>
+        @endif
       </div>
     </div>
   </div>

@@ -53,10 +53,10 @@
           </li>
 
            @if(Auth::user()->roles == 3)
-            <li class="nav-item">
-              <a href="{{route('daftar.mitra',Auth::user()->id)}}" class="nav-link">
+           <li class="nav-item">
+              <a href="{{route('informasi-rental-saya')}}" class="nav-link">
                 <i class="fa fa-car nav-icon"></i>
-                <p>Menjadi mitra kami</p>
+                <p>Mobil rental saya</p>
               </a>
             </li>
             <li class="nav-item">
@@ -126,7 +126,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{route('transaction.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-money-bill"></i>
                 <p>
@@ -141,7 +141,7 @@
                   Rekening saya
                 </p>
               </a>
-            </li>
+            </li> -->
           @endif
 
           <li class="nav-item">

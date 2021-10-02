@@ -28,6 +28,14 @@ class CarController extends Controller
         return view('dashboard.admin.car.index', compact('cars'));
     }
 
+    public function setujui ($id)
+    {
+        $car = Car::find($id);
+        $car->approved_admin = 'disetujui';
+        $car->save();
+        return redirect()->back()->with('status','Mobil Berhasil Disetujui');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
