@@ -15,11 +15,11 @@ class FrontendController extends Controller
     	return view('pages.home.index', compact('cars','testimonials')); 
     }
 
-    public function detailMobil($slug)
+    public function detailMobil($id)
     {
         // $journeyDate = 
         // $returnDate = 
-        $car = Car::with('user','kategori','gallery')->where('slug',$slug)->first(); 
+        $car = Car::with('user','kategori','gallery')->where('id',$id)->first(); 
     	return view('pages.detail-mobil.index', compact('car'));
     }
 

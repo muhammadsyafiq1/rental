@@ -32,7 +32,7 @@
       <thead>
         <tr>
           <th>Mobil Rental</th>
-          <th>Foto CS</th>
+          <th>Foto CS / KTP</th>
           <th>Nama CS</th>
           <th>Handphone CS</th>
           <th>Mulai</th>
@@ -48,8 +48,12 @@
               	<td>
               	  @if ($booking->booking->user->avatar)
 		              <img src="{{ Storage::url($booking->booking->user->avatar) }}" class="img-circle elevation-2" height="60">
+                  <br>
+                  <a href="{{Storage::url($booking->booking->user->photo_ktp)}}">Ktp</a>
 		          @else
-		              <img src="https://ui-avatars.com/api/?name={{ $booking->booking->user->name }}" height="60" class="img-circle elevation-2" />
+		              <img src="https://ui-avatars.com/api/?name={{ $booking->booking->user->name }}" height="60" class="img-circle elevation-2" /> <br>
+                  <a href="{{Storage::url($booking->booking->user->photo_ktp)}}"> Ktp</a>
+
 		          @endif
               	</td>
               	<td>{{$booking->booking->user->name}}</td>

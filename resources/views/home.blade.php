@@ -11,14 +11,14 @@
         @if (Auth::user()->roles == 1)
         <h1 class="m-0">Dashboard Admin</h1>
         @elseif(Auth::user()->roles == 2)
-        <h1 class="m-0">Dashboard Mitra</h1>
+        <h1 class="m-0">Dashboard Pemilik Mobil</h1>
         @else
-        <h1 class="m-0">Dashboard Customer</h1>
+        <h1 class="m-0">Dashboard Pelanggan</h1>
         @endif
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,66 +29,63 @@
 <div class="container-fluid">
     <!-- Info boxes -->
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$users}}</h3>
 
-          <div class="info-box-content">
-            <span class="info-box-text">CPU Traffic</span>
-            <span class="info-box-number">
-              10
-              <small>%</small>
-            </span>
+                <p>Total Pengguna</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+            </div>
           </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$mobil}}</h3>
 
-          <div class="info-box-content">
-            <span class="info-box-text">Likes</span>
-            <span class="info-box-number">41,410</span>
+                <p>Total mobil</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-car"></i>
+              </div>
+            </div>
           </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$booking}}</h3>
 
-      <!-- fix for small devices only -->
-      <div class="clearfix hidden-md-up"></div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-          <div class="info-box-content">
-            <span class="info-box-text">Sales</span>
-            <span class="info-box-number">760</span>
+                <p>Total reservasi</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-list"></i>
+              </div>
+            </div>
           </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$type}}</h3>
 
-          <div class="info-box-content">
-            <span class="info-box-text">New Members</span>
-            <span class="info-box-number">2,000</span>
+                <p>Total tipe mobil</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
           </div>
-          <!-- /.info-box-content -->
+          <!-- ./col -->
         </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
-    </div>
     <!-- /.row -->
 </div><!--/. container-fluid -->
 @endsection

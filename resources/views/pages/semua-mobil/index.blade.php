@@ -36,13 +36,13 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="cf-1"></label>
-                <input name="nama_mobil" type="text" id="cf-1" placeholder="Cari berdasarkan merk mobil" class="form-control">
+                <input name="nama_mobil" type="text" id="cf-1" placeholder="Cari berdasarkan model mobil" class="form-control">
               </div>
               <div class="form-group col-md-6">
                 <label for="cf-2"></label>
                 <select id="cf-1" class="form-control" name="lepas_kunci">
-                  <option value="0">With driver</option>
-                  <option value="1">Self Driver</option>
+                  <option value="0">Dengan Sopir</option>
+                  <option value="1">Tanpa Sopir</option>
                 </select>
               </div>
             </div>
@@ -64,7 +64,7 @@
     @if($car->approved_admin != 'belum')
     	<div class="col-lg-4 col-md-6 mb-4">
 	        <div class="item-1">
-	            <a href="{{route('detail',$car->slug)}}"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>
+	            <a href="{{route('detail',$car->id)}}"><img src="{{ Storage::url($car->gallery->first()->foto ?? '') }}" alt="Image" class="img-fluid"></a>
 	            <div class="item-1-contents">
 	              <div class="text-center">
 	              <h3><a href="#">{{$car->nama_mobil}}</a></h3>
@@ -90,7 +90,7 @@
                   </ul>
 	              <div class="d-flex justify-content-between action">
                     <div>
-                      <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
+                      <a href="{{route('detail',$car->id)}}" class="btn btn-primary">Detail</a>
                     </div>
                     <div>
                       @auth

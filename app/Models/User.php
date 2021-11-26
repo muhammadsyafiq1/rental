@@ -20,10 +20,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo_ktp',
         'roles',
         'avatar',
         'address',
         'phone',
+        'photo_ktp'
     ];
 
     /**

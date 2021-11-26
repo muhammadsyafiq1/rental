@@ -20,9 +20,13 @@
           <ul class="site-menu main-menu js-clone-nav ml-auto ">
             <li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="{{url('/')}}" class="nav-link">Home</a></li>
             <li class="{{ (request()->is('lihat-semua-mobil')) ? 'active' : '' }}"><a href="{{url('lihat-semua-mobil')}}" class="nav-link">Mobil Rental</a></li>
-            <li><a href="" class="nav-link">Kontak</a></li>| 
+            <!-- <li><a href="" class="nav-link">Kontak</a></li>|  -->
             @auth
-            <li><a href="{{route('home')}}" class="nav-link ">Dashboard Saya</a></li>
+            <li><a href="{{route('home')}}" class="nav-link ">Dashboard Saya</a> <span class="text-warning"> | </span> </li> 
+            <li><a  href="{{url('/logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> <span class="text-warning"> </span> </li> 
+            <form id="logout-form" action="{{url('/logout')}}" method="POST" style="display: none;">
+              @csrf
+            </form>
             @else
             <li><a href="{{route('login')}}" class="nav-link">Login</a></li>
             <li><a href="{{route('register')}}" class="nav-link">Register</a></li>

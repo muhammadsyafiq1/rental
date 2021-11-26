@@ -10,10 +10,27 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">Register a new membership</p>
   
-        <form action="{{route('register')}}" method="post">
+        <form action="{{route('register')}}" method="post" enctype="multipart/form-data">
             @csrf
           <div class="input-group mb-3">
             <input placeholder="Masukan Nama" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
+           <div class="input-group mb-3">
+            <select class="form-control" name="roles">
+              <option selected disabled>--Pilih Akses--</option>
+              <option value="2">Pemilik mobil</option>
+              <option value="3">Pelanggan</option>
+            </select>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>

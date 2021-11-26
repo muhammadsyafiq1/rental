@@ -73,6 +73,14 @@ class BookingController extends Controller
         // return $pdf->stream();
     }
 
+    public function cancelBooking ($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->bookingdetail()->delete();
+        $booking->delete();
+        return redirect()->back()->with('status','Reservasi dibatalkan');
+    }
+
     public function success($id)
     {
         $booking_detail = Booking_detail::with('booking.user','car.user')->findOrFail($id);

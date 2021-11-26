@@ -33,7 +33,7 @@
   <div class="col-4">
     <div class="card" style="width: 20rem;">
       <div class="gallery-container">
-        <img class="card-img-top" src="{{Storage::url($car->gallery->first()->foto)}}" alt="Card image cap">
+        <img class="card-img-top" src="{{Storage::url($car->gallery->first()->foto ?? '')}}" alt="Card image cap">
         <a href="{{route('remove.car',$car->id)}}" class="delete-gallery" onclick="return confirm('Yakin ingin menghapus {{$car->nama_mobil}} ?')">
             <img src="/backend/dist/img/icon-delete.svg">
         </a>

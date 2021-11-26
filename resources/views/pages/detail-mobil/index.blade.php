@@ -9,11 +9,11 @@
 	$tot = $car->harga_rental + $car->biaya_supir; 
 @endphp
 <div class="ftco-blocks-cover-1">
- <div class="ftco-cover-1 overlay innerpage" style="background-image: url('{{Storage::url($car->gallery->first()->foto)}}')">
+ <div class="ftco-cover-1 overlay innerpage" style="background-image: url('{{Storage::url($car->gallery->first()->foto ?? '')}}')">
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-6 text-center">
-          <h1>Booking Mobil</h1>
+          <h1>Reservasi Mobil</h1>
           <p>{{$car->nama_mobil}}</p>
         </div>
       </div>
@@ -51,7 +51,7 @@
             <div class="carousel-inner">
               {{-- @foreach ($car->gallery as $gallery) --}}
               <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ Storage::url($car->gallery->first()->foto) }}" alt="First slide">
+                <img class="d-block w-100" src="{{ Storage::url($car->gallery->first()->foto ?? '') }}" alt="First slide">
               </div>
               {{-- @endforeach --}}
               @foreach ($car->gallery as $gallery)
@@ -165,24 +165,24 @@
 	        <div class="row">
 	        	<div class="form-group col-lg-6 col-sm-12">
 		            <label for="cf-3">Journey date</label>
-		            <input name="mulai_rental" type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
+		            <input required name="mulai_rental" type="text" id="cf-3" placeholder="Your pickup address" class="form-control datepicker px-3">
 		          </div>
 		          <div class="form-group col-lg-6 col-sm-12">
-		            <label for="cf-4">Return date</label>
+		            <label required for="cf-4">Return date</label>
 		            <input name="tanggal_kembali" type="text" id="cf-4" placeholder="Your pickup address" class="form-control datepicker px-3">
 		        </div>
 		        <div class="form-group col-12">
 		        	<label>Lokasi tujuan anda</label>
-		        	<input type="text" name="lokasi_tujuan" class="form-control" autocomplete>
+		        	<input required type="text" name="lokasi_tujuan" class="form-control" autocomplete>
 		        </div>
 		        <div class="form-group col-12">
 		        	<label>Berapa orang</label>
-		        	<input type="number" name="berapa_orang" class="form-control" autocomplete>
+		        	<input required type="number" name="berapa_orang" class="form-control" autocomplete>
 		        </div>
 		        <div class="form-group col-12">
 		        	<span>Apakah anda ingin mobil diantar ketempat anda ?</span> <br>
 		        	<div class="form-check">
-					  <input class="form-check-input" type="radio" name="exampleRadios" id="tombol_show" value="option1">
+					  <input  class="form-check-input" type="radio" name="exampleRadios" id="tombol_show" value="option1">
 					  <label class="form-check-label" for="tombol_show">
 					    Iya terimakasih, Silahkan diantar
 					  </label>
@@ -206,7 +206,11 @@
 								Sedang dirental
 							</button>
 						@else
-			        		<button class="btn btn-block btn-sm btn-warning" type="submit">Order</button>
+							@if(Auth::user()->photo_ktp == NULL)
+			        		<a href="{{route('home')}}" onClick="return confirm('lengkapi profil anda terlebih dahulu')" class="btn btn-block btn-sm btn-warning" type="button">Reservasi</a>
+			        		@else
+			        		<button class="btn btn-block btn-sm btn-warning" type="submit">Reservasi</button>
+			        		@endif
 						@endif
 
 			        	<button class="btn btn-block btn-sm btn-success" type="submit">Telefon</button>

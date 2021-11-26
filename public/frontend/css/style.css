@@ -280,7 +280,7 @@ h1, h2, h3, h4, h5,
     padding: 4em 0; }
 
 .site-footer {
-  padding: 4em 0;
+  padding: 2em 0;
   background: #000; }
   @media (min-width: 768px) {
     .site-footer {

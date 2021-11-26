@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\User;
 use Auth;
 use Str;
 
@@ -17,14 +18,14 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('gallery','kategori')->where('user_id', Auth::user()->id)->get(); 
+        $cars = Car::with('gallery','kategori')->where('user_id', Auth::user()->id)->orderBy('id','desc')->get(); 
         $categories = Category::all();
         return view('dashboard.car.index', compact('cars','categories'));
     }
 
     public function semuaMobil ()
     {
-        $cars = Car::with('gallery','kategori')->get();
+        $cars = Car::with('gallery','kategori')->orderBy('id','desc')->get();
         return view('dashboard.admin.car.index', compact('cars'));
     }
 
@@ -147,12 +148,14 @@ class CarController extends Controller
         $car_edit->warna_mobil = $request->warna_mobil;
         $car_edit->tranmisi_mobil = $request->tranmisi_mobil;
         $car_edit->lepas_kunci = $request->lepas_kunci;
-        $car_edit->status_mobil = 0;
+        // $car_edit->status_mobil = 0;
         $car_edit->stnk_mobil = $request->stnk_mobil;
         $car_edit->nomor_plat = $request->nomor_plat;
         $car_edit->biaya_supir = $request->biaya_supir;
         $car_edit->deskripsi_mobil = $request->deskripsi_mobil;
         $car_edit->harga_rental = $request->harga_rental;
+        $car_edit->slug = Str::slug($request->nama_mobil);
+
 
         if($request->lepas_kunci == "1"){
             $car_edit->biaya_supir = 0;

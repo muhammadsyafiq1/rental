@@ -40,10 +40,10 @@
             <div class="nonloop-block-13 owl-carousel">
               @foreach($cars as $car)
               <div class="item-1">
-                <a href="#"><img src="{{ Storage::url($car->gallery->first()->foto) }}" alt="Image" class="img-fluid"></a>
+                <a href="#"><img src="{{ Storage::url($car->gallery->first()->foto ?? '') }}" alt="Image" class="img-fluid"></a>
                 <div class="item-1-contents">
                   <div class="text-center">
-                  <h3><a href="#{{route('detail',$car->slug)}}">{{ $car->nama_mobil }}</a></h3>
+                  <h3><a href="{{route('detail',$car->id)}}">{{ $car->nama_mobil }}</a></h3>
                   <div class="rating">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
@@ -73,7 +73,7 @@
                   </ul>
                   <div class="d-flex justify-content-between action">
                     <div>
-                      <a href="{{route('detail',$car->slug)}}" class="btn btn-primary">Detail</a>
+                      <a href="{{route('detail',$car->id)}}" class="btn btn-primary">Detail</a>
                     </div>
                     <div>
                       @auth

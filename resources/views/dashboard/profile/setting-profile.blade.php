@@ -41,6 +41,17 @@
                                       </span>
                                   @enderror
                           </div>
+                           <div class="form-group col-12">
+                                  <label for="photo_ktp">Photo ktp (wajib)</label> <br>
+                                  <img class="mb-3" src="{{Storage::url($user->photo_ktp)}}" style="width: 100px;" >
+                                  <br>
+                                  <input value="{{old('photo_ktp') ? old('photo_ktp') : $user->photo_ktp}}" type="file" name="photo_ktp" class="form-control @error('photo_ktp') is-invalid @enderror">
+                                  @error('photo_ktp')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                          </div>
                           <div class="form-group col-12">
                               <label for="email">Email</label>
                               <input readonly value="{{old('email') ? old('email') : $user->email}}" type="text" name="email" class="form-control @error('email') is-invalid @enderror">

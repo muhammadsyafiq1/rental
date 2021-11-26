@@ -121,6 +121,13 @@ class UserController extends Controller
             $file = $request->file('avatar')->store('avatars','public');
             $user->avatar = $file;
         } 
+        if($request->hasFile('photo_ktp')){
+            if($request->photo_ktp && file_exists(storage_path('app/public/'.$request->photo_ktp))){
+                Storage::delete('public/'.$request->photo_ktp);
+            }
+            $file = $request->file('photo_ktp')->store('photo_ktps','public');
+            $user->photo_ktp = $file;
+        } 
         $user->save();
         return redirect()->back()->with('status','Profile berhasil diubah');
     }

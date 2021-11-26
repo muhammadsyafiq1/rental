@@ -37,6 +37,7 @@
           <th>Selesai</th>
           <th>Biaya</th>
           <th>Sisa Waktu</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -50,7 +51,7 @@
                     <small class="text-muted text-success">Pemilik : {{$rentalSaya->car->user->name}}</small>
                 </td>
                 <td>
-                    <img src="{{ Storage::url($rentalSaya->car->gallery->first()->foto) }}" class="img-circle elevation-2" width="100">
+                    <img src="{{ Storage::url($rentalSaya->car->gallery->first()->foto ?? 'not found') }}" class="img-circle elevation-2" width="100">
                 </td>
                 <td>{{date('d-M-Y',strtotime($rentalSaya->booking->mulai_rental))}}</td>
                 <td>{{date('d-M-Y',strtotime($rentalSaya->booking->tanggal_kembali))}}</td>               
@@ -59,8 +60,19 @@
                     @if(date('d-M-Y',strtotime($date)) >=  date('d-M-Y',strtotime($rentalSaya->booking->tanggal_kembali)))
                         <p style="font-weight: bold;" class="text-danger">Masa rental habis</p>
                     @else
-                        <p style="font-weight: bold;" class="text-success">Masa rental masih berlanjut</p>
+                      @if($rentalSaya->car->status == 'dirental')
+                          <p style="font-weight: bold;" class="text-success">Masa rental masih berlanjut</p>
+                      @else
+                          <p style="font-weight: bold;" class="text-success">Tunggu proses dari {{$rentalSaya->car->user->name}}</p>
+
+                      @endif
                     @endif
+                </td>
+                <td>
+                  @if($rentalSaya->car->status == 'tersedia')
+                  <a href="{{route('cancel.booking',$rentalSaya->id)}}" class="btn btn-sm btn-secondary" onclick="return confirm('yakin cancel reservasi ini ?')"> Cancel reservasi</a>
+
+                  @endif
                 </td>
             </tr>
         @endforeach

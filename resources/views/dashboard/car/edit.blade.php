@@ -42,7 +42,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12 col-lg-5">
-						<img src="{{Storage::url($car->gallery->first()->foto)}}" class="w-100 img-rounded">
+						<img src="{{Storage::url($car->gallery->first()->foto ?? '')}}" class="w-100 img-rounded">
 						 <div class="row mt-4">
 						 	 <div class="col-12 col-lg-6 form-group">
 			                  <label for="stnk_mobil">Nomor STNK</label>

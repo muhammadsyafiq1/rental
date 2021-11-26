@@ -19,7 +19,7 @@ Auth::routes();
 // view frontend
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 Route::get('lihat-semua-mobil', [App\Http\Controllers\FrontendController::class, 'SemuaMobil'])->name('lihat-semua-mobil');
-Route::get('/mobil/detail/{slug}', [App\Http\Controllers\FrontendController::class, 'detailMobil'])->name('detail');
+Route::get('/mobil/detail/{id}', [App\Http\Controllers\FrontendController::class, 'detailMobil'])->name('detail');
 
 
 // dashboard backend
@@ -47,6 +47,9 @@ Route::get('/informasi-rental-saya', [App\Http\Controllers\BookingController::cl
 Route::get('/booking/dikembalikan/{id}', [App\Http\Controllers\BookingController::class, 'mobilDikembalikan'])->name('booking.selesai-rental');
 // route status mobil dibooking menjadi dirental
 Route::get('/booking/dirental/{id}', [App\Http\Controllers\BookingController::class, 'mobilDirental'])->name('booking.rental');
+
+// cancel booking
+Route::get('booking/cancel/{id}', [App\Http\Controllers\BookingController::class, 'cancelBooking'])->name('cancel.booking');
 
 // nonaktifkan user
 Route::get('/user/nonaktifkan/{id}', [App\Http\Controllers\UserController::class, 'nonaktifkan'])->name('user.nonaktif');
